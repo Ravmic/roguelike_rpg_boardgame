@@ -7,7 +7,7 @@
     z-index: 1;
     transform: translateY(0);
     background-color: #935F2C;
-    transition: 0.8s ease-out;
+    transition: 0.5s ease-out;
 
     .menu {
         height: 100%;
@@ -128,5 +128,5 @@
 
 
 .game__menu-wrapper.active {
-    transform: translateY(100%);
+    transform: translateY(150%);
 }

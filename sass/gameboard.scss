@@ -1,15 +1,25 @@
 .game__gameboard-wrapper {
-    height: 55vh;
-    background-color: rgb(250, 250, 250);
+    height: 50vh;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // background-color: rgb(250, 250, 250);
+
 
 
     .gameboard {
-        height: 100%;
+
+        width: 1100px;
+        padding: 20px 0;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         align-content: center;
+        border: 2px solid rgb(199, 199, 199);
+        background-color: rgb(250, 250, 250);
 
 
         &__row {
@@ -17,24 +27,84 @@
             justify-content: center;
             align-items: center;
             align-content: center;
-
             flex-wrap: wrap;
-            width: 1000px;
+            width: 1050px;
             margin: 0 auto;
-            // border: 2px solid black;
 
             &--block {
-                margin: 1px;
+                display: flex;
+                flex-wrap: wrap;
+                position: relative;
+                margin: 5px 3px;
                 width: 80px;
                 height: 80px;
                 border: 2px solid black;
+
+
+                p {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    font-size: 2rem;
+                    opacity: 0.2;
+                }
+
+                .player {
+                    flex-basis: 50%;
+                    height: 50%;
+                    background-color: rgb(255, 82, 82);
+                    border-radius: 50%;
+                    z-index: 1;
+                }
+
+                .player:nth-of-type(2) {
+                    background-color: rgb(99, 82, 255);
+                }
+
+                .player:nth-of-type(3) {
+                    background-color: rgb(243, 255, 82);
+                }
+
+                .player:nth-of-type(4) {
+                    background-color: rgb(200, 82, 255);
+                }
+
             }
+
+            .start {
+                background-color: rgb(199, 199, 199);
+            }
+
+            .forest {
+                background-color: #b0dab1;
+            }
+
+            .city {
+                background-color: #c2c2a5;
+            }
+
+            .swamp {
+                background-color: #7aa079;
+            }
+
+            .castle {
+                background-color: #a6a5c2;
+            }
+
+            .hell {
+                background-color: #c2a5a5;
+            }
+
+
         }
 
         &__row:nth-of-type(even) {
             transform: rotate(180deg);
 
-
+            p {
+                transform: translate(-50%, -50%) rotate(180deg);
+            }
         }
     }
 

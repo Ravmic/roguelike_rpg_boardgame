@@ -2,10 +2,10 @@ export class Gameboard {
     constructor(size) {
         this.gameboardEl = document.querySelector('.gameboard')
         this.mapSize = size
-        this.currentBlockNr = 1
+        this.currentBlockNr = 0
         this.rowNumbers = parseInt(this.mapSize / 12)
 
-
+        this.mapGenerator()
     }
 
     landscapeSelect(value) {
@@ -17,24 +17,24 @@ export class Gameboard {
             return "swamp"
         } else if (value === 3) {
             return "castle"
-        }
-        else if (value === 4) {
+        } else if (value === 4) {
             return "hell"
         }
     }
 
     mapGenerator() {
-
+        //generate rows
         for (let i = 0; this.rowNumbers > i; i++) {
             const row = document.createElement('div')
             row.setAttribute('class', "gameboard__row")
-
+            //generate blocks
             for (let i = 0; 12 > i; i++) {
                 const block = document.createElement('div')
                 block.setAttribute('class', "gameboard__row--block")
                 let area = ""
 
-                if (this.currentBlockNr === 1) {
+                //marking "start" block
+                if (this.currentBlockNr === 0) {
                     area = "start"
                 }
                 else {
@@ -42,13 +42,20 @@ export class Gameboard {
                     area = this.landscapeSelect(randomAreaNr)
                 }
 
-                console.log(area)
                 block.setAttribute('area', area)
                 block.classList.add(area)
+                const blockNr = document.createElement('p')
+
+                //marking "start" block
+                if (this.currentBlockNr === 0) {
+                    blockNr.textContent = "start"
+                } else {
+                    blockNr.textContent = this.currentBlockNr
+                }
 
 
-                block.textContent = this.currentBlockNr
                 this.currentBlockNr++
+                block.appendChild(blockNr)
                 row.appendChild(block)
             }
 

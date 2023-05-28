@@ -46,14 +46,18 @@ class GameStart {
     }
 
     //Game init 
-    startGame(players, lives, mapSize) {
-        if (players && lives && mapSize) {
+    startGame(playersNr, lives, mapSize) {
+        if (playersNr && lives && mapSize) {
             document.querySelector(".game__menu-wrapper").classList.add('active')
 
-            new Gameboard(mapSize).mapGenerator()
+            //generating map
+            new Gameboard(mapSize)
 
-            const newPlayersList = new Players(players, lives).playersArray
+            //generating players
+            const newPlayersList = new Players(playersNr, lives).playersArray
 
+
+            //initialize main game module
             new Game(newPlayersList, mapSize)
 
         } else {
