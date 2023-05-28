@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roguelike RPG boardgame</title>
+    <script src="https://kit.fontawesome.com/3ab555cbc7.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="game">
+        <div class="game__stats-wrapper">
+            <div class="stats">
+
+            </div>
+        </div>
+        <div class="game__gameboard-wrapper">
+            <div class="gameboard">
+
+            </div>
+        </div>
+
+        <div class="game__dice-wrapper">
+            <div class="dice">
+                <div class="dice__dots dot-1"></div>
+                <div class="dice__dots dot-2"></div>
+                <div class="dice__dots dot-3"></div>
+                <div class="dice__dots dot-4"></div>
+                <div class="dice__dots dot-5"></div>
+                <div class="dice__dots dot-6"></div>
+            </div>
+            <div class="dice-btn">
+                <p>roll</p>
+            </div>
+        </div>
+        <div class="game__skip-turn-wrapper">
+            <div class="skip-turn">
+                <div class="skip-turn__btn">
+                    <p>skip</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="game__menu-wrapper">
+            <div class="menu">
+                <div class="menu__logo">
+                    <h1>Roguelike RPG board game</h1>
+                </div>
+
+                <div class="menu__settings menu__settings-title--players">
+                    <h2 class="menu__settings-title ">Players</h2>
+                    <div class="menu__settings-btn" key="1">I</div>
+                    <div class="menu__settings-btn" key="2">II</div>
+                    <div class="menu__settings-btn" key="3">III</div>
+                    <div class="menu__settings-btn" key="4">IV</div>
+                </div>
+                <div class="menu__settings menu__settings-title--lives">
+                    <h2 class="menu__settings-title ">Lives</h2>
+                    <div class="menu__settings-btn" key="1">I</div>
+                    <div class="menu__settings-btn" key="2">II</div>
+                    <div class="menu__settings-btn" key="3">III</div>
+                    <div class="menu__settings-btn" key="4">IV</div>
+                    <div class="menu__settings-btn" key="5">V</div>
+                    <div class="menu__settings-btn" key="6">VI</div>
+                    <div class="menu__settings-btn" key="7">VII</div>
+                    <div class="menu__settings-btn" key="8">VIII</div>
+                    <div class="menu__settings-btn" key="9">IX</div>
+                    <div class="menu__settings-btn" key="10">X</div>
+                </div>
+                <div class="menu__settings menu__settings-title--mapSize">
+                    <h2 class="menu__settings-title ">Map Size</h2>
+                    <div class="menu__settings-btn" key="12">12</div>
+                    <div class="menu__settings-btn" key="24">24</div>
+                    <div class="menu__settings-btn" key="36">36</div>
+                    <div class="menu__settings-btn" key="48">48</div>
+                    <div class="menu__settings-btn" key="60">60</div>
+
+                </div>
+
+                <div class="menu__buttons">
+                    <button class="start">Start game</button>
+                </div>
+            </div>
+            <div class="menu__warning">
+                <i class="fa-solid fa-xmark"></i>
+                <p>Choose number of players, lives and map size to start!</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
