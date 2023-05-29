@@ -12,11 +12,12 @@ export class Game {
         this.currentPlayerStatEl = document.querySelector('.currentPlayer')
         this.currentPlayerStatEl.textContent = this.currentPlayer + 1
 
+        //potions
+        this.potionEl = document.querySelectorAll('player-stats__potion')
+
         //dice
         this.moves = null
         this.turnFlag = true
-
-
 
         this.init()
     }
