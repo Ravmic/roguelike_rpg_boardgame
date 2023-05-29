@@ -36,11 +36,11 @@
                 display: flex;
                 flex-wrap: wrap;
                 position: relative;
-                margin: 5px 3px;
-                width: 80px;
-                height: 80px;
+                margin: 3px 3px;
+                width: $board-block-size;
+                height: $board-block-size;
                 border: 2px solid #4f6e4f;
-                ;
+
 
 
                 p {

@@ -8,7 +8,6 @@ export class Game {
 
         //Players
         this.playersList = playersList
-        console.log(this.mapEl)
         this.currentPlayer = 0
         this.currentPlayerStatEl = document.querySelector('.currentPlayer')
         this.currentPlayerStatEl.textContent = this.currentPlayer + 1

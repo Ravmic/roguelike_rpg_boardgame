@@ -6,9 +6,9 @@ import { Gameboard } from "./gameboard"
 
 class GameStart {
     constructor() {
-        this.playersBtns = document.querySelectorAll(".menu__settings-title--players .menu__settings-btn")
-        this.livesBtns = document.querySelectorAll(".menu__settings-title--lives .menu__settings-btn")
-        this.sizeBtns = document.querySelectorAll(".menu__settings-title--mapSize .menu__settings-btn")
+        this.playersBtns = document.querySelectorAll(".menu__settings--players .menu__settings-btn")
+        this.livesBtns = document.querySelectorAll(".menu__settings--lives .menu__settings-btn")
+        this.sizeBtns = document.querySelectorAll(".menu__settings--mapSize .menu__settings-btn")
         this.warningBtn = document.querySelector(".fa-xmark")
         this.warningEl = document.querySelector(".menu__warning")
         this.startGameBtn = document.querySelector('.start')

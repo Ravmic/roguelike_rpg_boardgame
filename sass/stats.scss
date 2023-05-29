@@ -1,5 +1,5 @@
 .game__stats-wrapper {
-    height: 22vh;
+    height: 200px;
     background-color: white;
     color: #935F2C;
 
@@ -8,42 +8,55 @@
     .stats {
         height: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         background-color: #F5DEB3;
         border-bottom: 3px solid #935F2C;
 
 
         .stats__current-player {
-            flex-basis: 30%;
+            flex-basis: 25%;
             height: 100%;
             display: flex;
             align-items: center;
+            text-align: center;
             font-size: 2rem;
             border-right: 3px solid #935F2C;
 
-
+            h2 {
+                width: 100%;
+                margin: 0 20px;
+            }
         }
 
 
         .stats_players-stats {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-start;
+            justify-content: center;
             align-items: center;
-            flex-basis: 50%;
-            margin-left: 40px;
+            flex-basis: 75%;
+            margin-left: 50px;
+
 
             .player-stats {
-                flex-basis: 50%;
+                flex-basis: 25%;
                 margin: 5px 0;
                 display: flex;
                 flex-wrap: wrap;
                 font-size: 1.5rem;
 
-                .player-stats__title {
+                @media (max-width:1200px) {
+                    flex-basis: 50%;
+                }
 
+                .player-stats__title {
                     margin-right: 10px;
+
+                }
+
+                .player-stats__title--main {
+                    font-size: 2rem;
                 }
 
                 .player-stats__revive {
@@ -56,8 +69,8 @@
                     align-items: center;
 
                     .player-stats__bar {
-                        height: 20px;
-                        width: 60%;
+                        height: 23px;
+                        width: 65%;
                         background-color: white;
                         border-radius: 5%;
                         border: 1px solid #935F2C;
@@ -69,6 +82,8 @@
                             color: white;
                             text-align: center;
                             font-size: 1.2rem;
+                            line-height: 21px;
+
                         }
                     }
                 }

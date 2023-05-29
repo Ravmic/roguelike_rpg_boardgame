@@ -42,7 +42,7 @@ export class Players {
             statsWrap.classList.add('player-stats')
 
             statsWrap.innerHTML = `
-            <h2 class="player-stats__title">Player ${index + 1}</h2>
+            <h2 class="player-stats__title player-stats__title--main">Player ${index + 1}</h2>
             <div class="player-stats__life">
                 <p class="player-stats__title">Life:</p>
                 <div class="player-stats__bar">
