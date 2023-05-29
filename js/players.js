@@ -13,6 +13,7 @@ export class Players {
     generatePlayers() {
         for (let i = 0; this.players > i; i++) {
             const player = {
+                nr: i,
                 lives: parseInt(this.lives),
                 position: 0,
                 currentArea: "start",
@@ -43,7 +44,8 @@ export class Players {
             statsWrap.classList.add('player-stats')
 
             statsWrap.innerHTML = `
-            <h2 class="player-stats__title player-stats__title--main">Player ${index + 1} <i class="player-stats__animation fa-solid fa-caret-up player${index}"><p></p></i></h2>
+            <h2 class="player-stats__title player-stats__title--main">Player ${index + 1} <i class="player-stats__animation fa-solid fa-caret-down player${index}"><p></p></i>
+            <i class="player-stats__animation fa-solid fa-caret-up player${index}"><p></p></i></h2>
             <div class="player-stats__life player-stats--flex">
                 <p class="player-stats__title">Life:</p>
                 <div class="player-stats__bar">
