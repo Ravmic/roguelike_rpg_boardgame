@@ -13,7 +13,7 @@ export class Players {
     generatePlayers() {
         for (let i = 0; this.players > i; i++) {
             const player = {
-                lives: this.lives,
+                lives: parseInt(this.lives),
                 position: 0,
                 currentArea: "start",
                 revive: false,

@@ -4,13 +4,13 @@ import { Game } from "./game"
 import { Gameboard } from "./gameboard"
 
 
-class GameStart {
+export class GameStart {
     constructor() {
         this.playersBtns = document.querySelectorAll(".menu__settings--players .menu__settings-btn")
         this.livesBtns = document.querySelectorAll(".menu__settings--lives .menu__settings-btn")
         this.sizeBtns = document.querySelectorAll(".menu__settings--mapSize .menu__settings-btn")
-        this.warningBtn = document.querySelector(".fa-xmark")
-        this.warningEl = document.querySelector(".menu__warning")
+        this.warnBtn = document.querySelector(".fa-xmark")
+        this.warnEl = document.querySelector(".game__warning")
         this.startGameBtn = document.querySelector('.start')
         this.playersSelected = null
         this.livesSelected = null
@@ -19,7 +19,7 @@ class GameStart {
         this.playersBtns.forEach(btn => btn.addEventListener('click', (e) => this.playerSelect(e)))
         this.livesBtns.forEach(btn => btn.addEventListener('click', (e) => this.livesSelect(e)))
         this.sizeBtns.forEach(btn => btn.addEventListener('click', (e) => this.mapSizeSelect(e)))
-        this.warningBtn.addEventListener('click', () => this.warningEl.classList.remove("active"))
+        this.warnBtn.addEventListener('click', () => this.warnEl.classList.remove("active"))
         this.startGameBtn.addEventListener('click', () => this.startGame(this.playersSelected, this.livesSelected, this.sizeSelected))
 
     }
@@ -58,10 +58,10 @@ class GameStart {
 
 
             //initialize main game module
-            new Game(newPlayersList)
+            new Game(newPlayersList, lives)
 
         } else {
-            this.warningEl.classList.add("active")
+            this.warnEl.classList.add("active")
         }
 
 
