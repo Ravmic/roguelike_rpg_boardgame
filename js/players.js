@@ -7,6 +7,7 @@ export class Players {
 
         this.generatePlayers()
         this.createPlayersEl()
+        this.createPlayerStats()
     }
 
     generatePlayers() {
@@ -32,6 +33,30 @@ export class Players {
 
             startPoint.appendChild(playerEl)
         })
+    }
+
+    createPlayerStats() {
+        const statsEl = document.querySelector('.stats_players-stats')
+        this.playersArray.forEach((player, index) => {
+            const statsWrap = document.createElement('div')
+            statsWrap.classList.add('player-stats')
+
+            statsWrap.innerHTML = `
+            <h2 class="player-stats__title">Player ${index + 1}</h2>
+            <div class="player-stats__life">
+                <p class="player-stats__title">Life:</p>
+                <div class="player-stats__bar">
+                    <div class="player-stats__bar-fill">${this.lives}/${this.lives}</div>
+                </div>
+            </div>
+            <div class="player-stats__revive">
+                <p class="player-stats__title">has revive:</p>
+                <p class="player-stats__revive">no</p>
+            </div>`
+
+            statsEl.appendChild(statsWrap)
+        })
+
     }
 }
 

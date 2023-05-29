@@ -1,4 +1,79 @@
 .game__stats-wrapper {
-    height: 23vh;
-    // background-color: white;
+    height: 22vh;
+    background-color: white;
+    color: #935F2C;
+
+
+
+    .stats {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #F5DEB3;
+        border-bottom: 3px solid #935F2C;
+
+
+        .stats__current-player {
+            flex-basis: 30%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            border-right: 3px solid #935F2C;
+
+
+        }
+
+
+        .stats_players-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            flex-basis: 50%;
+            margin-left: 40px;
+
+            .player-stats {
+                flex-basis: 50%;
+                margin: 5px 0;
+                display: flex;
+                flex-wrap: wrap;
+                font-size: 1.5rem;
+
+                .player-stats__title {
+
+                    margin-right: 10px;
+                }
+
+                .player-stats__revive {
+                    display: flex;
+                }
+
+                .player-stats__life {
+                    flex-basis: 100%;
+                    display: flex;
+                    align-items: center;
+
+                    .player-stats__bar {
+                        height: 20px;
+                        width: 60%;
+                        background-color: white;
+                        border-radius: 5%;
+                        border: 1px solid #935F2C;
+
+                        .player-stats__bar-fill {
+                            height: 100%;
+                            width: 100%;
+                            background-color: #8fc090;
+                            color: white;
+                            text-align: center;
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
 }
