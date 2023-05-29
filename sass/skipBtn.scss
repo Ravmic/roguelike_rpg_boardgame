@@ -1,8 +1,8 @@
 .game__skip-turn-wrapper {
-    position: absolute;
-    position: absolute;
+    position: fixed;
     right: 200px;
     bottom: 40px;
+    z-index: 1;
 
     .skip-turn {
         display: flex;

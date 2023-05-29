@@ -1,8 +1,11 @@
 .game__stats-wrapper {
-    height: 200px;
+    height: 180px;
     background-color: white;
     color: #935F2C;
 
+    @media (max-width:800px) {
+        height: auto;
+    }
 
 
     .stats {
@@ -21,7 +24,6 @@
             align-items: center;
             text-align: center;
             font-size: 2rem;
-            border-right: 3px solid #935F2C;
 
             h2 {
                 width: 100%;
@@ -30,14 +32,21 @@
         }
 
 
-        .stats_players-stats {
+        .stats__players-stats {
+            height: 100%;
+            flex-basis: 75%;
+            padding-left: 50px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            flex-basis: 75%;
-            margin-left: 50px;
+            border-left: 3px solid #935F2C;
 
+            @media (max-width:1200px) {
+                flex-basis: 100%;
+                margin-left: 20px;
+                justify-content: space-evenly;
+            }
 
             .player-stats {
                 flex-basis: 25%;
@@ -46,8 +55,14 @@
                 flex-wrap: wrap;
                 font-size: 1.5rem;
 
-                @media (max-width:1200px) {
+                @media (max-width:800px) {
                     flex-basis: 50%;
+                    font-size: 1.3rem;
+                }
+
+                .player-stats--flex {
+                    display: flex;
+                    flex-basis: 100%;
                 }
 
                 .player-stats__title {
@@ -59,13 +74,9 @@
                     font-size: 2rem;
                 }
 
-                .player-stats__revive {
-                    display: flex;
-                }
 
                 .player-stats__life {
                     flex-basis: 100%;
-                    display: flex;
                     align-items: center;
 
                     .player-stats__bar {
@@ -87,6 +98,17 @@
                         }
                     }
                 }
+
+                .player-stats__potions {
+
+                    .player-stats__potion {
+                        width: 20px;
+                        height: 20px;
+                        color: red;
+                        cursor: pointer;
+                    }
+                }
+
 
             }
         }

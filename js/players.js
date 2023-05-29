@@ -17,6 +17,7 @@ export class Players {
                 position: 0,
                 currentArea: "start",
                 revive: false,
+                potions: [1]
             }
             this.playersArray.push(player)
         }
@@ -36,23 +37,27 @@ export class Players {
     }
 
     createPlayerStats() {
-        const statsEl = document.querySelector('.stats_players-stats')
+        const statsEl = document.querySelector('.stats__players-stats')
         this.playersArray.forEach((player, index) => {
             const statsWrap = document.createElement('div')
             statsWrap.classList.add('player-stats')
 
             statsWrap.innerHTML = `
             <h2 class="player-stats__title player-stats__title--main">Player ${index + 1}</h2>
-            <div class="player-stats__life">
+            <div class="player-stats__life player-stats--flex">
                 <p class="player-stats__title">Life:</p>
                 <div class="player-stats__bar">
-                    <div class="player-stats__bar-fill">${this.lives}/${this.lives}</div>
+                    <div class="player-stats__bar-fill" key="${index}">${this.lives}/${this.lives}</div>
                 </div>
             </div>
-            <div class="player-stats__revive">
-                <p class="player-stats__title">has revive:</p>
-                <p class="player-stats__revive">no</p>
-            </div>`
+            <div class="player-stats__revive player-stats--flex">
+                <p class="player-stats__title">Has revive:</p>
+                <p class="player-stats__revive" key="${index}">no</p>
+            </div>
+            <div class="player-stats__potions player-stats--flex" key="${index}">  
+                <p class="player-stats__title" >Potions:</p>
+                <img class="player-stats__potion" src="assets/potion.svg" alt="potion" key="${index}"></img>
+             </div>`
 
             statsEl.appendChild(statsWrap)
         })
