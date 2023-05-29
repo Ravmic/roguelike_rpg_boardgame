@@ -58,7 +58,7 @@ class GameStart {
 
 
             //initialize main game module
-            new Game(newPlayersList, mapSize)
+            new Game(newPlayersList)
 
         } else {
             this.warningEl.classList.add("active")

@@ -58,15 +58,15 @@
                     z-index: 1;
                 }
 
-                .player:nth-of-type(2) {
+                .player1 {
                     background-color: rgb(99, 82, 255);
                 }
 
-                .player:nth-of-type(3) {
+                .player2 {
                     background-color: rgb(243, 255, 82);
                 }
 
-                .player:nth-of-type(4) {
+                .player3 {
                     background-color: rgb(200, 82, 255);
                 }
 
@@ -74,6 +74,10 @@
 
             .start {
                 background-color: rgb(199, 199, 199);
+            }
+
+            .win {
+                background-color: #f1f1f1;
             }
 
             .forest {

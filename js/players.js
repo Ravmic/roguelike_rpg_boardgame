@@ -25,8 +25,11 @@ export class Players {
         const startPoint = document.querySelector('.start')
         this.playersArray.forEach((player, index) => {
             const playerEl = document.createElement('div')
-            playerEl.classList.add("player")
+            playerEl.classList.add(`player`)
+            playerEl.classList.add(`player${index}`)
+
             playerEl.setAttribute("data-number", index)
+
             startPoint.appendChild(playerEl)
         })
     }

@@ -31,26 +31,32 @@ export class Gameboard {
             for (let i = 0; 12 > i; i++) {
                 const block = document.createElement('div')
                 block.setAttribute('class', "gameboard__row--block")
+                block.setAttribute('key', this.currentBlockNr)
                 let area = ""
 
-                //marking "start" block
+
+                const randomAreaNr = Math.floor(Math.random() * 5)
+                area = this.landscapeSelect(randomAreaNr)
+
+                //marking "start" and "finnish" block
                 if (this.currentBlockNr === 0) {
                     area = "start"
                 }
-                else {
-                    const randomAreaNr = Math.floor(Math.random() * 5)
-                    area = this.landscapeSelect(randomAreaNr)
+                else if (this.currentBlockNr === this.mapSize - 1) {
+                    area = "win"
                 }
 
                 block.setAttribute('area', area)
                 block.classList.add(area)
-                const blockNr = document.createElement('p')
 
-                //marking "start" block
+                const blockNr = document.createElement('p')
+                blockNr.textContent = this.currentBlockNr
+
+                //marking "start" and "finnish" block
                 if (this.currentBlockNr === 0) {
                     blockNr.textContent = "start"
-                } else {
-                    blockNr.textContent = this.currentBlockNr
+                } else if (this.currentBlockNr === this.mapSize - 1) {
+                    blockNr.textContent = "win"
                 }
 
 
