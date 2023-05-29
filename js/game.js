@@ -11,6 +11,7 @@ export class Game {
         this.playersList = playersList
         this.currentPlayer = 0
         this.maxLife = lives
+        this.hpValue = 0
         this.currentPlayerStatEl = document.querySelector('.currentPlayer')
         this.currentPlayerStatEl.textContent = this.currentPlayer + 1
 
@@ -22,9 +23,9 @@ export class Game {
         this.warnMessage = document.querySelector(".game__warning-message")
 
         //dice
+        this.dice = new Dice()
         this.moves = null
         this.turnFlag = true
-        console.log(this.playersList)
         this.init()
     }
 
@@ -43,26 +44,41 @@ export class Game {
 
     }
 
-    heal(e) {
+
+
+    potionHeal(e) {
         if (e.target.parentElement.getAttribute("key") !== this.currentPlayer.toFixed()) {
             this.warnMessage.textContent = "Its not your potion!"
             this.warnEl.classList.add("active")
 
         } else {
-            this.playersList[this.currentPlayer].lives += 2
+            this.hpValue = 2
+            this.hpControl()
             this.playersList[this.currentPlayer].potions.splice(0, 1)
             e.target.remove()
-            if (this.playersList[this.currentPlayer].lives > this.maxLife) {
-
-                this.playersList[this.currentPlayer].lives = this.maxLife
-                console.log(this.playersList[this.currentPlayer])
-            }
-
             this.nextTurn()
         }
 
     }
+    hpControl() {// CHANGE WHEN YOU ITRODUCE EVENTS AND LOOSING HP
+        if (this.hpValue > 0) { //when healing
 
+            const playerName = document.querySelector(`.player-stats__animation.player${this.currentPlayer}`)
+            playerName.classList.add('active')
+            playerName.innerHTML = `<p>${this.hpValue}</p>`
+            setTimeout(() => playerName.classList.remove('active'), 500)
+
+            this.playersList[this.currentPlayer].lives += this.hpValue
+            if (this.playersList[this.currentPlayer].lives > this.maxLife) {
+                this.playersList[this.currentPlayer].lives = this.maxLife
+                console.log(this.playersList[this.currentPlayer])
+            }
+        } else { //when loosing health
+
+        }
+
+
+    }
     nextTurn() {
 
         this.currentPlayer++
@@ -79,8 +95,8 @@ export class Game {
         } else return
 
         //dice roll
-        this.moves = new Dice().diceValue
-
+        this.dice.rollDice()
+        this.moves = this.dice.diceValue
         //player move
 
         this.playerMove()
@@ -102,6 +118,6 @@ export class Game {
 
     init() {
         document.querySelector('.dice-btn').addEventListener('click', () => this.startTurn())
-        this.potionEl.forEach(el => el.addEventListener('click', (e) => this.heal(e)))
+        this.potionEl.forEach(el => el.addEventListener('click', (e) => this.potionHeal(e)))
     }
 }

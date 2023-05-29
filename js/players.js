@@ -17,7 +17,7 @@ export class Players {
                 position: 0,
                 currentArea: "start",
                 revive: false,
-                potions: [1]
+                potions: [1, 1, 1, 1,]
             }
             this.playersArray.push(player)
         }
@@ -43,7 +43,7 @@ export class Players {
             statsWrap.classList.add('player-stats')
 
             statsWrap.innerHTML = `
-            <h2 class="player-stats__title player-stats__title--main">Player ${index + 1}</h2>
+            <h2 class="player-stats__title player-stats__title--main">Player ${index + 1} <i class="player-stats__animation fa-solid fa-caret-up player${index}"><p></p></i></h2>
             <div class="player-stats__life player-stats--flex">
                 <p class="player-stats__title">Life:</p>
                 <div class="player-stats__bar">
@@ -52,12 +52,29 @@ export class Players {
             </div>
             <div class="player-stats__revive player-stats--flex">
                 <p class="player-stats__title">Has revive:</p>
-                <p class="player-stats__revive" key="${index}">no</p>
-            </div>
-            <div class="player-stats__potions player-stats--flex" key="${index}">  
-                <p class="player-stats__title" >Potions:</p>
-                <img class="player-stats__potion" src="assets/potion.svg" alt="potion" key="${index}"></img>
-             </div>`
+                <p class="player-stats__revive" key="${index}">${this.playersArray[index].revive ? "yes" : "no"}</p>
+            </div>`
+
+
+            //potion on game start
+            const potionStack = document.createElement('div')
+            const potionTitle = document.createElement('p')
+
+            potionStack.setAttribute('class', "player-stats__potions player-stats--flex")
+            potionStack.setAttribute('key', index)
+            potionTitle.textContent = "Potions:"
+            potionTitle.setAttribute('class', 'player-stats__title')
+            potionStack.appendChild(potionTitle)
+            this.playersArray[index].potions.forEach(potion => {
+                const potionEl = document.createElement('img')
+                potionEl.setAttribute('class', 'player-stats__potion')
+                potionEl.src = "assets/potion.svg"
+                potionEl.alt = 'potion'
+                potionStack.appendChild(potionEl)
+                statsWrap.appendChild(potionStack)
+            })
+
+
 
             statsEl.appendChild(statsWrap)
         })

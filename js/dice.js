@@ -5,7 +5,7 @@ export class Dice {
         this.diceValue = null
         this.rotation = 0
 
-        this.rollDice()
+
     }
 
     reset(value) {
@@ -14,16 +14,18 @@ export class Dice {
     }
 
     rollDice = () => {
+
         const diceValue = Math.floor(Math.random() * 6 + 1)
 
-        this.diceAnimation(diceValue)
+
         this.diceValue = diceValue
+        this.diceAnimation(diceValue)
 
     }
 
     diceAnimation(value) {
-        this.rotation += 180
-        this.diceEl.style.transform = `rotate(${this.rotation}deg)`
+
+        this.diceEl.style.transform = `rotate(${this.rotation += 180}deg)`
         this.diceEl.classList.add(`roll${value}`)
         this.diceBtn.classList.add(`active`)
 

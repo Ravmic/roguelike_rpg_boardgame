@@ -49,6 +49,7 @@
             }
 
             .player-stats {
+                position: relative;
                 flex-basis: 25%;
                 margin: 5px 0;
                 display: flex;
@@ -71,7 +72,38 @@
                 }
 
                 .player-stats__title--main {
+                    position: relative;
                     font-size: 2rem;
+
+                    .player-stats__animation {
+                        position: absolute;
+                        left: 105%;
+                        top: 10px;
+                        display: flex;
+                        font-size: 2rem;
+                        color: #69b46b;
+                        opacity: 0;
+
+                        p {
+                            font-family: 'Eagle Lake', cursive;
+                        }
+
+                        @keyframes hpUp {
+                            50% {
+                                transform: translateY(-40%);
+                                opacity: 1;
+                            }
+
+                            100% {
+                                transform: translateY(-80%);
+                                opacity: 0;
+                            }
+                        }
+                    }
+
+                    .player-stats__animation.active {
+                        animation: hpUp 0.4s 1 linear;
+                    }
                 }
 
 
