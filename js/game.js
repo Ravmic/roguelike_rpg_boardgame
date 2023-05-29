@@ -23,6 +23,10 @@ export class Game {
         this.warnEl = document.querySelector(".game__warning")
         this.warnMessage = document.querySelector(".game__warning-message")
 
+        //Win/loose Screen
+        this.finishScreen = document.querySelector(".game__msg-board")
+        this.finishMessage = document.querySelector(".game__msg-board-message ")
+
         //dice
         this.dice = new Dice()
         this.moves = null
@@ -58,8 +62,8 @@ export class Game {
 
         } else {
             this.hpValue = 2
-            this.hpControl()
             this.playersList[this.currentPlayer].potions.splice(0, 1)
+            this.hpControl()
             e.target.remove()
             this.nextTurn()
         }
@@ -69,50 +73,47 @@ export class Game {
 
     hpControl() {// CHANGE WHEN YOU ITRODUCE EVENTS AND LOOSING HP
         if (this.hpValue > 0) { //when healing
+            this.playersList[this.currentPlayer].lives += this.hpValue
+
+            //animation
             const hpAnimation = document.querySelector(`.fa-caret-up.player${this.currentPlayer}`)
             hpAnimation.classList.add('active')
             hpAnimation.innerHTML = `<p>${this.hpValue}</p>`
-            this.playersList[this.currentPlayer].lives += this.hpValue
+
 
             setTimeout(() => hpAnimation.classList.remove('active'), 500)
 
             if (this.playersList[this.currentPlayer].lives > this.maxLife) {
                 this.playersList[this.currentPlayer].lives = this.maxLife
-                console.log(this.playersList[this.currentPlayer])
-            }
-        } else { //when loosing health
 
+            }
+        } else if (this.hpValue < 0) { //when loosing health
+            this.playersList[this.currentPlayer].lives += this.hpValue
+
+            //animation
             const hpAnimation = document.querySelector(`.fa-caret-down.player${this.currentPlayer}`)
             hpAnimation.classList.add('active')
             hpAnimation.innerHTML = `<p>${this.hpValue}</p>`
-            this.playersList[this.currentPlayer].lives += this.hpValue
 
             setTimeout(() => hpAnimation.classList.remove('active'), 500)
 
             if (this.playersList[this.currentPlayer].lives <= 0) {
-
-                this.warnMessage.textContent = `Player ${this.currentPlayer + 1} is dead `
-                this.warnEl.classList.add("active")
                 const playerNow = document.querySelector(`[data-number="${this.currentPlayer}"]`)
                 playerNow.remove()
                 this.playersList.splice(this.currentPlayer, 1, "")
-
-
+                //check if everyone is dead 
+                if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
+                    this.finishMessage.textContent = `Everyone is Dead! YOU LOOSE!`
+                    this.finishScreen.classList.add("active")
+                    //warn if one player is dead
+                } else {
+                    this.warnMessage.textContent = `Player ${this.currentPlayer + 1} is dead `
+                    this.warnEl.classList.add("active")
+                }
             }
-
         }
     }
 
-    checkIfAlive() {
-        //Checking if everyone is dead
-        const checkIfAlive = this.playersList.filter(player => player === "")
-        if (checkIfAlive.length >= this.playersList.length) {
-            this.warnMessage.textContent = `Everyone is Dead! YOU LOOSE!`
-            this.warnEl.classList.add("active")
-        } else {
-            this.nextTurn()
-        }
-    }
 
     nextTurn() {
 
@@ -124,7 +125,15 @@ export class Game {
             this.currentPlayerStatEl.textContent = 1
         }
         if (this.playersList[this.currentPlayer] === "") {
-            this.checkIfAlive()
+
+            //check if everyone is dead -
+            if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
+                this.finishMessage.textContent = `Everyone is Dead! YOU LOOSE!`
+                this.finishScreen.classList.add("active")
+
+            } else { this.nextTurn() }
+
+
         }
     }
 
@@ -141,10 +150,10 @@ export class Game {
         this.playerMove()
 
         if (this.playersList[this.currentPlayer].position >= this.mapEl.length - 1) {
-            this.warnMessage.textContent = `PLAYER ${this.currentPlayer + 1} WINS! `
-            this.warnEl.classList.add("active")
-            this.playersList = []
-            document.querySelector('.gameboard').innerHTML = ""
+            this.finishMessage.textContent = `PLAYER ${this.currentPlayer + 1} WINS! `
+            this.finishScreen.classList.add("active")
+            // this.playersList = []
+            // document.querySelector('.gameboard').innerHTML = ""
         }
 
         //nextTurn

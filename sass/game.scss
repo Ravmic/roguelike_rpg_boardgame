@@ -15,7 +15,7 @@
         justify-content: center;
         align-items: center;
         transform: translate(-50%, -50%);
-        z-index: 100;
+        z-index: 10;
         background-color: #532f0c;
 
         p {
@@ -37,5 +37,33 @@
 
     .game__warning.active {
         display: flex;
+    }
+
+
+    .game__msg-board {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        z-index: 11;
+        transform: translateX(-150%);
+        background-color: #935F2C;
+        transition: 0.5s ease-out;
+
+        .game__msg-board-message {
+            margin: auto;
+            padding: 150px 300px;
+            font-size: 3.5rem;
+            color: white;
+            user-select: none;
+
+            border: 5px solid white;
+        }
+    }
+
+    .game__msg-board.active {
+        transform: translateX(0);
     }
 }
