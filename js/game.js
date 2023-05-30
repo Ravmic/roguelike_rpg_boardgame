@@ -36,7 +36,7 @@ export class Game {
 
     flagChange() {
         this.turnFlag = !this.turnFlag
-        setTimeout(() => { this.turnFlag = !this.turnFlag }, 2000)
+        setTimeout(() => { this.turnFlag = !this.turnFlag }, this.dice.rollTime)
     }
 
     playerMove() {

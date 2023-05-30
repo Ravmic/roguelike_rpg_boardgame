@@ -1,8 +1,10 @@
 .game {
     height: 100vh;
+    min-width: 1050px;
     display: flex;
     flex-direction: column;
     background-color: #C9E3CA;
+    overflow: hidden;
 
 
 

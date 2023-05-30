@@ -5,19 +5,18 @@ export class Sounds {
         this.controlBarHandle = document.querySelector(".volume-control__handle")
         this.clickCheck = false
         this.handlePosition = 0
-        this.volume = null
+        this.mainVolume = null
 
         this.init()
     }
-
+    //click checker
     isClicked() {
         this.clickCheck = true
     }
     isUnclicked() {
         this.clickCheck = false
     }
-
-
+    //calculating borders where slider will work
     calcOffset(clientX) {
         const position = clientX - this.controlBarEl.offsetLeft
 
@@ -29,14 +28,13 @@ export class Sounds {
             this.handlePosition = position
         }
     }
-
     mouseMove(clientX) {
         this.calcOffset(clientX)
         const percent = this.handlePosition / this.controlBarEl.offsetWidth
         this.controlBarHandle.style.left = `${percent * 100}%`
         this.audioEl.volume = percent
     }
-
+    //Initialize playing song and listening to volume slider
     init() {
         this.audioEl.play()
         this.audioEl.volume = 0.2
@@ -51,4 +49,5 @@ export class Sounds {
 
         )
     }
-} 
+}
+

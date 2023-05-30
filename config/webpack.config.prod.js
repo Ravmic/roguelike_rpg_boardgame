@@ -2,7 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 
 module.exports = {
@@ -85,11 +85,12 @@ module.exports = {
 
 
         }),
-        // new CopyPlugin({ //plugin do kopiowania
-        //     patterns: [
-
-        //     ],
-        // }),
+        new CopyPlugin({ //plugin do kopiowania
+            patterns: [
+                { from: "public/images", to: "images" },
+                { from: "public/sounds", to: "sounds" },
+            ],
+        }),
     ],
 
     devServer: {

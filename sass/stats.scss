@@ -3,9 +3,9 @@
     background-color: white;
     color: #935F2C;
 
-    @media (max-width:900px) {
-        height: auto;
-    }
+    // @media (max-width:900px) {
+    //     height: auto;
+    // }
 
 
     .stats {
@@ -55,10 +55,10 @@
                 flex-wrap: wrap;
                 font-size: 1.5rem;
 
-                @media (max-width:900px) {
-                    flex-basis: 50%;
-                    font-size: 1.2rem;
-                }
+                // @media (max-width:900px) {
+                //     flex-basis: 50%;
+                //     font-size: 1.2rem;
+                // }
 
                 .player-stats--flex {
                     display: flex;
@@ -170,8 +170,8 @@
                 .player-stats__potions {
 
                     .player-stats__potion {
-                        width: 20px;
-                        height: 20px;
+                        width: 24px;
+                        height: 24px;
                         color: red;
                         cursor: pointer;
                     }

@@ -1,3 +1,4 @@
+import "../public/sounds/roll-effect.mp3"
 export class Dice {
     constructor() {
         this.diceEl = document.querySelector(".dice")
@@ -8,13 +9,19 @@ export class Dice {
 
     }
 
+    rollSound() {
+        const rollSound = new Audio("../sounds/roll-effect.mp3")
+        rollSound.play()
+        rollSound.volume = 0.2
+    }
+
     reset(value) {
         this.diceBtn.classList.remove(`active`)
         this.diceEl.classList.remove(`roll${value}`)
     }
 
     rollDice = () => {
-
+        this.rollSound()
         const diceValue = Math.floor(Math.random() * 6 + 1)
 
 
