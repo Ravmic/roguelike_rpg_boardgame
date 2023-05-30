@@ -76,7 +76,7 @@ export class Players {
             this.playersArray[index].potions.forEach(potion => {
                 const potionEl = document.createElement('img')
                 potionEl.setAttribute('class', 'player-stats__potion')
-                potionEl.src = "assets/potion.svg"
+                potionEl.src = "images/potion.svg"
                 potionEl.alt = 'potion'
                 potionStack.appendChild(potionEl)
                 statsWrap.appendChild(potionStack)

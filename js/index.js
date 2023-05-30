@@ -2,7 +2,7 @@ import "../sass/style.scss"
 import { Players } from "./players"
 import { Game } from "./game"
 import { Gameboard } from "./gameboard"
-
+import { Audio } from "./audio"
 
 export class GameStart {
     constructor() {
@@ -48,7 +48,11 @@ export class GameStart {
     //Game init 
     startGame(playersNr, lives, mapSize) {
         if (playersNr && lives && mapSize) {
+            //menu slie animation
             document.querySelector(".game__menu-wrapper").classList.add('active')
+
+            //play music
+            const audio = new Audio()
 
             //generating map
             new Gameboard(mapSize)

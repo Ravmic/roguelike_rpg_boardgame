@@ -148,18 +148,21 @@ export class Game {
         this.dice.rollDice()
         this.moves = this.dice.diceValue
 
-        //player move
-        this.playerMove()
+        //delay to execute functions after dice animation time
+        setTimeout(() => {
+            //player move
+            this.playerMove()
 
-        if (this.playersList[this.currentPlayer].position >= this.mapEl.length - 1) {
-            this.finishMessage.textContent = `PLAYER ${this.currentPlayer + 1} WINS! `
-            this.finishScreen.classList.add("active")
-            // this.playersList = []
-            // document.querySelector('.gameboard').innerHTML = ""
-        }
+            if (this.playersList[this.currentPlayer].position >= this.mapEl.length - 1) {
+                this.finishMessage.textContent = `PLAYER ${this.currentPlayer + 1} WINS! `
+                this.finishScreen.classList.add("active")
+                // this.playersList = []
+                // document.querySelector('.gameboard').innerHTML = ""
+            }
+            //nextTurn
+            this.nextTurn()
+        }, this.dice.rollTime)
 
-        //nextTurn
-        this.nextTurn()
     }
 
     init() {

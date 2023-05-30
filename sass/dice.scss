@@ -1,13 +1,13 @@
 .game__dice-wrapper {
-    position: fixed;
-    right: 50px;
-    bottom: 65px;
+    position: absolute;
+    right: $btn-right;
+    bottom: 85px;
     z-index: 1;
 
     .dice {
         position: relative;
-        height: $dice-size;
-        width: $dice-size;
+        height: $btn-size;
+        width: $btn-size;
         border: 2px solid #4f6e4f;
         border-radius: 10%;
         transform: rotate(0);
@@ -68,11 +68,11 @@
 
 
         .dot-1 {
-            transform: translate(-50%, calc(($dots-size/2 *-1) - calc($dice-size / 3.5)))
+            transform: translate(-50%, calc(($dots-size/2 *-1) - calc($btn-size / 3.5)))
         }
 
         .dot-1~div {
-            transform: translate(-50%, calc(($dots-size/2 *-1) + calc($dice-size / 3.5)))
+            transform: translate(-50%, calc(($dots-size/2 *-1) + calc($btn-size / 3.5)))
         }
 
 
@@ -81,11 +81,11 @@
     .dice.roll3 {
 
         .dot-1 {
-            transform: translate(-50%, calc(($dots-size/2 *-1) - calc($dice-size / 3.5)))
+            transform: translate(-50%, calc(($dots-size/2 *-1) - calc($btn-size / 3.5)))
         }
 
         .dot-2~div {
-            transform: translate(-50%, calc(($dots-size/2 *-1) + calc($dice-size / 3.5)))
+            transform: translate(-50%, calc(($dots-size/2 *-1) + calc($btn-size / 3.5)))
         }
 
     }
@@ -93,19 +93,19 @@
     .dice.roll4 {
 
         .dot-1 {
-            transform: translate(calc(($dots-size/2 *-1) + calc($dice-size / 4)), calc(($dots-size/2 *-1) - calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) + calc($btn-size / 4)), calc(($dots-size/2 *-1) - calc($btn-size / 4)))
         }
 
         .dot-2 {
-            transform: translate(calc(($dots-size/2 *-1) - calc($dice-size / 4)), calc(($dots-size/2 *-1) - calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) - calc($btn-size / 4)), calc(($dots-size/2 *-1) - calc($btn-size / 4)))
         }
 
         .dot-3 {
-            transform: translate(calc(($dots-size/2 *-1) - calc($dice-size / 4)), calc(($dots-size/2 *-1) + calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) - calc($btn-size / 4)), calc(($dots-size/2 *-1) + calc($btn-size / 4)))
         }
 
         .dot-3~div {
-            transform: translate(calc(($dots-size/2 *-1) + calc($dice-size / 4)), calc(($dots-size/2 *-1) + calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) + calc($btn-size / 4)), calc(($dots-size/2 *-1) + calc($btn-size / 4)))
         }
 
     }
@@ -113,19 +113,19 @@
     .dice.roll5 {
 
         .dot-1 {
-            transform: translate(calc(($dots-size/2 *-1) + calc($dice-size / 4)), calc(($dots-size/2 *-1) - calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) + calc($btn-size / 4)), calc(($dots-size/2 *-1) - calc($btn-size / 4)))
         }
 
         .dot-2 {
-            transform: translate(calc(($dots-size/2 *-1) - calc($dice-size / 4)), calc(($dots-size/2 *-1) - calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) - calc($btn-size / 4)), calc(($dots-size/2 *-1) - calc($btn-size / 4)))
         }
 
         .dot-3 {
-            transform: translate(calc(($dots-size/2 *-1) - calc($dice-size / 4)), calc(($dots-size/2 *-1) + calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) - calc($btn-size / 4)), calc(($dots-size/2 *-1) + calc($btn-size / 4)))
         }
 
         .dot-4~div {
-            transform: translate(calc(($dots-size/2 *-1) + calc($dice-size / 4)), calc(($dots-size/2 *-1) + calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) + calc($btn-size / 4)), calc(($dots-size/2 *-1) + calc($btn-size / 4)))
         }
 
 
@@ -136,27 +136,27 @@
 
 
         .dot-1 {
-            transform: translate(calc(($dots-size/2 *-1) + calc($dice-size / 4)), calc(($dots-size/2 *-1) - calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) + calc($btn-size / 4)), calc(($dots-size/2 *-1) - calc($btn-size / 4)))
         }
 
         .dot-2 {
-            transform: translate(calc(($dots-size/2 *-1) - calc($dice-size / 4)), calc(($dots-size/2 *-1) - calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) - calc($btn-size / 4)), calc(($dots-size/2 *-1) - calc($btn-size / 4)))
         }
 
         .dot-3 {
-            transform: translate(calc(($dots-size/2 *-1) - calc($dice-size / 4)), calc(($dots-size/2 *-1) + calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) - calc($btn-size / 4)), calc(($dots-size/2 *-1) + calc($btn-size / 4)))
         }
 
         .dot-4 {
-            transform: translate(calc(($dots-size/2 *-1) + calc($dice-size / 4)), calc(($dots-size/2 *-1) + calc($dice-size / 4)))
+            transform: translate(calc(($dots-size/2 *-1) + calc($btn-size / 4)), calc(($dots-size/2 *-1) + calc($btn-size / 4)))
         }
 
         .dot-5 {
-            transform: translate(calc(($dots-size/2 *-1) + calc($dice-size / 4)), -50%)
+            transform: translate(calc(($dots-size/2 *-1) + calc($btn-size / 4)), -50%)
         }
 
         .dot-6 {
-            transform: translate(calc(($dots-size/2 *-1) - calc($dice-size / 4)), -50%)
+            transform: translate(calc(($dots-size/2 *-1) - calc($btn-size / 4)), -50%)
         }
     }
 

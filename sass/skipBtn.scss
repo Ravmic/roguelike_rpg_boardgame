@@ -1,15 +1,15 @@
 .game__skip-turn-wrapper {
-    position: fixed;
-    right: 200px;
-    bottom: 65px;
+    position: absolute;
+    right: calc($btn-right * 4);
+    bottom: 85px;
     z-index: 1;
 
     .skip-turn {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: $dice-size;
-        width: $dice-size;
+        height: $btn-size;
+        width: $btn-size;
         border: 2px solid #4f6e4f;
         ;
         border-radius: 10%;

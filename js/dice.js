@@ -4,7 +4,7 @@ export class Dice {
         this.diceBtn = document.querySelector(".dice-btn")
         this.diceValue = null
         this.rotation = 0
-
+        this.rollTime = 2000
 
     }
 
@@ -29,7 +29,7 @@ export class Dice {
         this.diceEl.classList.add(`roll${value}`)
         this.diceBtn.classList.add(`active`)
 
-        setTimeout(() => { this.reset(value) }, 2000)
+        setTimeout(() => { this.reset(value) }, this.rollTime)
     }
 }
 

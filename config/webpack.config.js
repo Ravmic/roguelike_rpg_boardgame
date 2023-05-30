@@ -30,6 +30,11 @@ module.exports = {
                 type: 'asset',
 
             },
+            {
+                test: /\.(mp3)$/,
+                type: 'asset',
+
+            },
         ]
     },
     plugins: [
