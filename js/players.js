@@ -18,7 +18,7 @@ export class Players {
                 position: 0,
                 currentArea: "start",
                 revive: false,
-                potions: [1, 1, 1, 1,]
+                potions: ["hp", "hp",]
             }
             this.playersArray.push(player)
         }
@@ -44,19 +44,25 @@ export class Players {
             statsWrap.classList.add('player-stats')
 
             statsWrap.innerHTML = `
-            <h2 class="player-stats__title player-stats__title--main">Player ${index + 1} <i class="player-stats__animation fa-solid fa-caret-down player${index}"><p></p></i>
-            <i class="player-stats__animation fa-solid fa-caret-up player${index}"><p></p></i></h2>
-            <div class="player-stats__life player-stats--flex">
-                <p class="player-stats__title">Life:</p>
-                <div class="player-stats__bar">
-                    <div class="player-stats__bar-fill" key="${index}">${this.lives}/${this.lives}</div>
-                </div>
-            </div>
-            <div class="player-stats__revive player-stats--flex">
-                <p class="player-stats__title">Has revive:</p>
-                <p class="player-stats__revive" key="${index}">${this.playersArray[index].revive ? "yes" : "no"}</p>
-            </div>`
-
+        <h2 class="player-stats__title player-stats__title--main">Player ${index + 1} <i
+            class="player-stats__animation fa-solid fa-caret-down player${index}">
+            <p></p>
+        </i>
+        <i class="player-stats__animation fa-solid fa-caret-up player${index}">
+            <p></p>
+        </i>
+        </h2>
+     <div class="player-stats__life player-stats--flex">
+        <p class="player-stats__title">Life:</p>
+        <div class="player-stats__bar">
+            <p class="player-stats__bar-stat player${index}">${this.lives}/${this.lives}</p>
+            <div class="player-stats__bar-fill player${index}"></div>
+        </div>
+     </div>
+    <div class="player-stats__revive player-stats--flex">
+        <p class="player-stats__title">Has revive:</p>
+        <p class="player-stats__revive  player${index}">${this.playersArray[index].revive ? "yes" : "no"}</p>
+    </div>`
 
             //potion on game start
             const potionStack = document.createElement('div')
@@ -75,6 +81,7 @@ export class Players {
                 potionStack.appendChild(potionEl)
                 statsWrap.appendChild(potionStack)
             })
+
 
 
 

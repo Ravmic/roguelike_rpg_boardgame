@@ -3,7 +3,7 @@
     background-color: white;
     color: #935F2C;
 
-    @media (max-width:800px) {
+    @media (max-width:900px) {
         height: auto;
     }
 
@@ -35,7 +35,7 @@
         .stats__players-stats {
             height: 100%;
             flex-basis: 75%;
-            padding-left: 50px;
+            padding: 5px 5px 5px 30px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -44,21 +44,20 @@
 
             @media (max-width:1200px) {
                 flex-basis: 100%;
-                margin-left: 20px;
                 justify-content: space-evenly;
             }
 
             .player-stats {
                 position: relative;
-                flex-basis: 25%;
+                flex-basis: 23%;
                 margin: 5px 0;
                 display: flex;
                 flex-wrap: wrap;
                 font-size: 1.5rem;
 
-                @media (max-width:800px) {
+                @media (max-width:900px) {
                     flex-basis: 50%;
-                    font-size: 1.3rem;
+                    font-size: 1.2rem;
                 }
 
                 .player-stats--flex {
@@ -133,21 +132,37 @@
                     align-items: center;
 
                     .player-stats__bar {
-                        height: 23px;
-                        width: 65%;
+                        position: relative;
+                        height: $lifebar-height;
+                        width: 60%;
                         background-color: white;
                         border-radius: 5%;
                         border: 1px solid #935F2C;
+                        background-color: #935F2C;
+                        overflow: hidden;
 
                         .player-stats__bar-fill {
                             height: 100%;
                             width: 100%;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            transform: translateX(0);
                             background-color: #8fc090;
+
+                        }
+
+                        .player-stats__bar-stat {
+                            position: absolute;
+                            width: 100%;
+                            top: 0;
+                            left: 0;
                             color: white;
                             text-align: center;
                             font-size: 1.2rem;
-                            line-height: 21px;
-
+                            line-height: calc($lifebar-height - 2px);
+                            text-align: center;
+                            z-index: 1;
                         }
                     }
                 }

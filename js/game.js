@@ -1,6 +1,5 @@
 import { Dice } from "./dice"
-import { GameStart } from "./index"
-
+import { StatsUpdate } from "./statsUpdate"
 
 export class Game {
     constructor(playersList, lives) {
@@ -10,7 +9,7 @@ export class Game {
         //Players
         this.playersList = [...playersList]
         this.currentPlayer = 0
-        this.maxLife = parseInt(lives)
+        this.maxHp = parseInt(lives)
         this.hpValue = 0
         this.currentPlayerStatEl = document.querySelector('.currentPlayer')
         this.currentPlayerStatEl.textContent = this.currentPlayer + 1
@@ -32,6 +31,7 @@ export class Game {
         this.moves = null
         this.turnFlag = true
         this.init()
+
     }
 
     flagChange() {
@@ -73,30 +73,33 @@ export class Game {
 
     hpControl() {// CHANGE WHEN YOU ITRODUCE EVENTS AND LOOSING HP
         if (this.hpValue > 0) { //when healing
+
+            new StatsUpdate(this.playersList[this.currentPlayer], this.maxHp, this.hpValue).healthChange()
             this.playersList[this.currentPlayer].lives += this.hpValue
 
             //animation
             const hpAnimation = document.querySelector(`.fa-caret-up.player${this.currentPlayer}`)
             hpAnimation.classList.add('active')
             hpAnimation.innerHTML = `<p>${this.hpValue}</p>`
-
-
             setTimeout(() => hpAnimation.classList.remove('active'), 500)
 
-            if (this.playersList[this.currentPlayer].lives > this.maxLife) {
-                this.playersList[this.currentPlayer].lives = this.maxLife
-
+            if (this.playersList[this.currentPlayer].lives > this.maxHp) {
+                this.playersList[this.currentPlayer].lives = this.maxHp
             }
+
+
         } else if (this.hpValue < 0) { //when loosing health
+
+            new StatsUpdate(this.playersList[this.currentPlayer], this.maxHp, this.hpValue).healthChange()
             this.playersList[this.currentPlayer].lives += this.hpValue
 
             //animation
             const hpAnimation = document.querySelector(`.fa-caret-down.player${this.currentPlayer}`)
             hpAnimation.classList.add('active')
             hpAnimation.innerHTML = `<p>${this.hpValue}</p>`
-
             setTimeout(() => hpAnimation.classList.remove('active'), 500)
 
+            //when player hp < 0
             if (this.playersList[this.currentPlayer].lives <= 0) {
                 const playerNow = document.querySelector(`[data-number="${this.currentPlayer}"]`)
                 playerNow.remove()
@@ -113,7 +116,6 @@ export class Game {
             }
         }
     }
-
 
     nextTurn() {
 
@@ -166,3 +168,4 @@ export class Game {
         document.querySelector('.skip-turn__btn').addEventListener('click', () => this.skipTurn())
     }
 }
+
