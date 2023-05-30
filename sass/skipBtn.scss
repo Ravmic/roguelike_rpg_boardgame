@@ -1,5 +1,5 @@
 .game__skip-turn-wrapper {
-    position: absolute;
+    position: fixed;
     right: calc($btn-right * 4);
     bottom: 85px;
     z-index: 1;

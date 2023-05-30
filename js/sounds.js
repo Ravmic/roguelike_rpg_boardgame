@@ -1,4 +1,4 @@
-export class Audio {
+export class Sounds {
     constructor() {
         this.audioEl = document.querySelector(".game__music-mp3")
         this.controlBarEl = document.querySelector(".game__music")
@@ -27,7 +27,6 @@ export class Audio {
             this.handlePosition = 0
         } else {
             this.handlePosition = position
-
         }
     }
 
@@ -36,13 +35,11 @@ export class Audio {
         const percent = this.handlePosition / this.controlBarEl.offsetWidth
         this.controlBarHandle.style.left = `${percent * 100}%`
         this.audioEl.volume = percent
-
     }
 
     init() {
         this.audioEl.play()
         this.audioEl.volume = 0.2
-
 
         this.controlBarHandle.addEventListener('mousedown', () => this.isClicked())
         window.addEventListener('mouseup', () => this.isUnclicked())

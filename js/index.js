@@ -2,7 +2,7 @@ import "../sass/style.scss"
 import { Players } from "./players"
 import { Game } from "./game"
 import { Gameboard } from "./gameboard"
-import { Audio } from "./audio"
+import { Sounds } from "./sounds"
 
 export class GameStart {
     constructor() {
@@ -52,7 +52,7 @@ export class GameStart {
             document.querySelector(".game__menu-wrapper").classList.add('active')
 
             //play music
-            const audio = new Audio()
+            const sounds = new Sounds()
 
             //generating map
             new Gameboard(mapSize)

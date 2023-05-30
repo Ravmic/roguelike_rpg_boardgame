@@ -4,7 +4,7 @@ export class Dice {
         this.diceBtn = document.querySelector(".dice-btn")
         this.diceValue = null
         this.rotation = 0
-        this.rollTime = 2000
+        this.rollTime = 1500
 
     }
 

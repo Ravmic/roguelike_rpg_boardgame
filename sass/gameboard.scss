@@ -1,13 +1,12 @@
 .game__gameboard-wrapper {
-    height: 55vh;
-    margin-top: 10px;
+    min-height: 500px;
+    flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 
     .gameboard {
-
-        width: 1100px;
+        width: 1050px;
         padding: 20px 0;
         display: flex;
         flex-direction: column;

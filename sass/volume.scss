@@ -1,6 +1,6 @@
 .game__music {
-    position: absolute;
-    right: calc($btn-size - ($btn-right * 3 - $btn-size));
+    position: fixed;
+    right: calc($btn-right + ($btn-size / 2));
     bottom: 40px;
     z-index: 1;
 
@@ -12,10 +12,11 @@
         align-items: center;
 
 
+
         &__bar {
             position: relative;
-            height: $volume-control-height;
-            width: 180px;
+            height: 8px;
+            width: 150px;
             background-color: rgb(250, 250, 250);
             border: 2px solid #935F2C;
 
@@ -26,9 +27,10 @@
                 top: 50%;
                 left: 20%;
                 transform: translate(-50%, -50%);
-                width: $volume-control-height;
-                height: $volume-control-height;
+                width: 18px;
+                height: 18px;
                 background-color: #935F2C;
+                border-radius: 15%;
                 cursor: pointer;
                 z-index: 4;
             }
@@ -37,9 +39,9 @@
         &__icon {
             position: absolute;
             top: 50%;
-            right: -27%;
-
+            right: -34%;
             transform: translate(-50%, -50%);
+
             font-size: 2rem;
             color: #935F2C;
             z-index: 2;
@@ -47,7 +49,7 @@
 
         &__icon:nth-child(1) {
             top: 50%;
-            right: 100%;
+            right: 101%;
             transform: translate(-50%, -50%);
 
         }
