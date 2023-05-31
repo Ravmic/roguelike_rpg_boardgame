@@ -4,10 +4,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 4;
     transform: translateY(0);
-    background-color: #935F2C;
-    transition: 0.5s ease-out;
+    background-color: #8fc090;
+    // transition: 0.5s ease-out;
 
     .menu {
         height: 100%;
@@ -17,7 +17,9 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+        border-left: 15px solid #F5DEB3;
+        border-right: 15px solid #F5DEB3;
+        background-color: #935F2C;
 
 
         &__logo {
@@ -25,7 +27,7 @@
             margin: 60px 0;
             font-size: 3rem;
             text-align: center;
-            color: wheat;
+            color: #F5DEB3;
 
         }
 
@@ -34,7 +36,7 @@
             align-items: center;
             margin: 30px 0;
             font-size: 2rem;
-            color: wheat;
+            color: #F5DEB3;
 
 
             &-title {
@@ -46,8 +48,8 @@
                 width: $menu-btn-size;
                 height: $menu-btn-size;
                 font-size: 1.9rem;
-                background-color: wheat;
-                border: 2px solid rgb(236, 206, 166);
+                background-color: #F5DEB3;
+                border: 3px solid #F5DEB3;
                 color: #935F2C;
                 border-radius: 50%;
                 text-align: center;
@@ -79,9 +81,10 @@
                 width: 250px;
                 padding: 20px 40px;
                 font-size: 2.5rem;
-                color: wheat;
+                color: #F5DEB3;
                 background-color: #532f0c;
-                border: none;
+                border: 3px solid #F5DEB3;
+
                 border-radius: 5px;
                 font-family: 'Eagle Lake', cursive;
                 cursor: pointer;

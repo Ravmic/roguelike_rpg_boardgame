@@ -9,23 +9,42 @@
 
 
     .game__warning {
-        width: 90%;
-        height: 200px;
+        width: 75%;
+        display: flex;
         position: fixed;
-        top: 50%;
+        top: 100%;
         left: 50%;
-        display: none;
         justify-content: center;
         align-items: center;
-        transform: translate(-50%, -50%);
-        z-index: 10;
+        transform: translate(-50%, 0);
+        z-index: 11;
         background-color: #532f0c;
+        transition: 0.4s ease-out;
 
-        p {
+        &-message {
+
             font-size: 3.5rem;
-            color: white;
+            color: #F5DEB3;
             user-select: none;
-            padding: 0 30px;
+            padding: 50px 30px;
+
+            &--greetings {
+                font-size: 2.8rem;
+
+                h2 {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    margin: 20px 0;
+                    font-size: 3.2rem;
+                    color: #ffdd1b;
+                }
+
+                span {
+                    color: #ff3d1b;
+                }
+            }
+
         }
 
         .fa-xmark {
@@ -33,13 +52,31 @@
             right: 30px;
             top: 20px;
             font-size: 3.5rem;
-            color: white;
+            color: #F5DEB3;
             cursor: pointer;
         }
     }
 
+    // apear when warning show up
+    &__popup-bg {
+        position: fixed;
+        display: none;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.16);
+        z-index: 10;
+    }
+
+    &__popup-bg.active {
+        display: block;
+
+    }
+
     .game__warning.active {
-        display: flex;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 
 
@@ -53,6 +90,7 @@
         z-index: 11;
         transform: translateX(-50%);
         background-color: #935F2C;
+
 
         .game__msg-board-message {
             margin: auto;

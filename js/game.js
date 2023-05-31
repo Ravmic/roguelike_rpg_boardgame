@@ -20,6 +20,7 @@ export class Game {
 
         //alert
         this.warnEl = document.querySelector(".game__warning")
+        this.warnBg = document.querySelector(".game__popup-bg")
         this.warnMessage = document.querySelector(".game__warning-message")
 
         //Win/loose Screen
@@ -58,12 +59,14 @@ export class Game {
 
     potionHeal(e) {
         if (e.target.parentElement.getAttribute("key") !== this.currentPlayerIndex.toFixed()) {
-            this.warnMessage.textContent = "Its not your potion!"
+            this.warnMessage.innerHTML = "Its not your potion!"
             this.warnEl.classList.add("active")
+            this.warnBg.classList.add("active")
 
         } else if (this.currentPlayerOb.lives >= this.maxHp) {
-            this.warnMessage.textContent = "You have full health"
+            this.warnMessage.innerHTML = "You have full health"
             this.warnEl.classList.add("active")
+            this.warnBg.classList.add("active")
         } else {
             this.hpValue = 2
             this.currentPlayerOb.potions.splice(0, 1)
@@ -110,8 +113,9 @@ export class Game {
                     statsUpdate.reviveChange()  //removing revive
                     this.hpValue = this.maxHp
                     this.currentPlayerOb.revive = false
-                    this.warnMessage.textContent = `Player ${this.currentPlayerIndex + 1} has revived!`
+                    this.warnMessage.innerHTML = `Player ${this.currentPlayerIndex + 1} has revived!`
                     this.warnEl.classList.add("active")
+                    this.warnBg.classList.add("active")
                     return this.hpControl()
 
                 } else {
@@ -125,8 +129,9 @@ export class Game {
                     this.finishScreen.classList.add("active")
                     //warn if one player is dead
                 } else {
-                    this.warnMessage.textContent = `Player ${this.currentPlayerIndex + 1} is dead `
+                    this.warnMessage.innerHTML = `Player ${this.currentPlayerIndex + 1} is dead `
                     this.warnEl.classList.add("active")
+                    this.warnBg.classList.add("active")
                 }
             }
         }
@@ -181,6 +186,11 @@ export class Game {
     }
 
     init() {
+        this.warnMessage.innerHTML = `<div class="game__warning-message--greetings"><h2>Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}</h2> 
+        An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You! This game Its a random generated board game, where players goal is to finish on last field without dying. Each colored field represents a <span>different location</span>, varying in difficulty level. In some locations, you can find healing <span>potions</span> or even reviving <span>relict</span>. But beware! There are many dangers in this world, that can <span>end your life</span>! <h2>Good luck!</h2></div>`
+        this.warnEl.classList.add("active")
+        this.warnBg.classList.add("active")
+
         document.querySelector('.dice-btn').addEventListener('click', () => this.startTurn())
         this.potionEl.forEach(el => el.addEventListener('click', (e) => this.potionHeal(e)))
         document.querySelector('.skip-turn__btn').addEventListener('click', () => this.skipTurn())

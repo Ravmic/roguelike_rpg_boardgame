@@ -11,6 +11,7 @@ export class GameStart {
         this.sizeBtns = document.querySelectorAll(".menu__settings--mapSize .menu__settings-btn")
         this.warnBtn = document.querySelector(".fa-xmark")
         this.warnEl = document.querySelector(".game__warning")
+        this.warnBg = document.querySelector(".game__popup-bg")
         this.startGameBtn = document.querySelector('.start')
         this.playersSelected = null
         this.livesSelected = null
@@ -19,9 +20,14 @@ export class GameStart {
         this.playersBtns.forEach(btn => btn.addEventListener('click', (e) => this.playerSelect(e)))
         this.livesBtns.forEach(btn => btn.addEventListener('click', (e) => this.livesSelect(e)))
         this.sizeBtns.forEach(btn => btn.addEventListener('click', (e) => this.mapSizeSelect(e)))
-        this.warnBtn.addEventListener('click', () => this.warnEl.classList.remove("active"))
+        this.warnBtn.addEventListener('click', () => this.closeWarn())
         this.startGameBtn.addEventListener('click', () => this.startGame(this.playersSelected, this.livesSelected, this.sizeSelected))
 
+    }
+    //close warn
+    closeWarn() {
+        this.warnEl.classList.remove("active")
+        this.warnBg.classList.remove("active")
     }
 
     // menu button selectors
@@ -66,6 +72,7 @@ export class GameStart {
 
         } else {
             this.warnEl.classList.add("active")
+            this.warnBg.classList.add("active")
         }
 
 
