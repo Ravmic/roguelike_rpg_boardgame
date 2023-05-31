@@ -9,8 +9,6 @@ export class StatsUpdate {
         this.healthStat = document.querySelector(`.player-stats__bar-stat.player${player.nr}`)
         this.reviveItem = document.querySelector(`.player-stats__revive.player${player.nr}`)
 
-
-
     }
 
     healthChange() {

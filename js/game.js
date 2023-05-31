@@ -8,11 +8,13 @@ export class Game {
 
         //Players
         this.playersList = [...playersList]
-        this.currentPlayer = 0
+        this.currentPlayerIndex = 0
+        this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
         this.maxHp = parseInt(lives)
         this.hpValue = 0
         this.currentPlayerStatEl = document.querySelector('.currentPlayer')
-        this.currentPlayerStatEl.textContent = this.currentPlayer + 1
+        this.currentPlayerStatEl.textContent = this.currentPlayerIndex + 1
+
 
         console.log(this.playersList)
         //potions
@@ -39,13 +41,14 @@ export class Game {
         setTimeout(() => { this.turnFlag = !this.turnFlag }, this.dice.rollTime)
     }
 
-    playerMove() {
-        const playerNow = document.querySelector(`[data-number="${this.currentPlayer}"]`)
-        this.playersList[this.currentPlayer].position += this.moves
 
-        if (this.playersList[this.currentPlayer].position >= this.mapEl.length - 1) {
-            this.mapEl[this.mapEl.length - 1].appendChild(playerNow)
-        } else { this.mapEl[this.playersList[this.currentPlayer].position].appendChild(playerNow) }
+    playerMove() {
+        const currentPlayerEl = document.querySelector(`[player-number="${this.currentPlayerIndex}"]`)
+        this.currentPlayerOb.position += this.moves
+
+        if (this.currentPlayerOb.position >= this.mapEl.length - 1) {
+            this.mapEl[this.mapEl.length - 1].appendChild(currentPlayerEl)
+        } else { this.mapEl[this.currentPlayerOb.position].appendChild(currentPlayerEl) }
 
     }
 
@@ -56,13 +59,13 @@ export class Game {
     }
 
     potionHeal(e) {
-        if (e.target.parentElement.getAttribute("key") !== this.currentPlayer.toFixed()) {
+        if (e.target.parentElement.getAttribute("key") !== this.currentPlayerIndex.toFixed()) {
             this.warnMessage.textContent = "Its not your potion!"
             this.warnEl.classList.add("active")
 
         } else {
             this.hpValue = 2
-            this.playersList[this.currentPlayer].potions.splice(0, 1)
+            this.currentPlayerOb.potions.splice(0, 1)
             this.hpControl()
             e.target.remove()
             this.nextTurn()
@@ -70,47 +73,57 @@ export class Game {
 
     }
 
-
     hpControl() {// CHANGE WHEN YOU ITRODUCE EVENTS AND LOOSING HP
         if (this.hpValue > 0) { //when healing
-
-            new StatsUpdate(this.playersList[this.currentPlayer], this.maxHp, this.hpValue).healthChange()
-            this.playersList[this.currentPlayer].lives += this.hpValue
+            const statsUpdate = new StatsUpdate(this.currentPlayerOb, this.maxHp, this.hpValue)
+            statsUpdate.healthChange()
+            this.currentPlayerOb.lives += this.hpValue
 
             //animation
-            const hpAnimation = document.querySelector(`.fa-caret-up.player${this.currentPlayer}`)
+            const hpAnimation = document.querySelector(`.fa-caret-up.player${this.currentPlayerIndex}`)
             hpAnimation.classList.add('active')
             hpAnimation.innerHTML = `<p>${this.hpValue}</p>`
             setTimeout(() => hpAnimation.classList.remove('active'), 500)
 
-            if (this.playersList[this.currentPlayer].lives > this.maxHp) {
-                this.playersList[this.currentPlayer].lives = this.maxHp
+            if (this.currentPlayerOb.lives > this.maxHp) {
+                this.currentPlayerOb.lives = this.maxHp
             }
 
 
         } else if (this.hpValue < 0) { //when loosing health
+            const statsUpdate = new StatsUpdate(this.currentPlayerOb, this.maxHp, this.hpValue)
+            statsUpdate.healthChange()
 
-            new StatsUpdate(this.playersList[this.currentPlayer], this.maxHp, this.hpValue).healthChange()
-            this.playersList[this.currentPlayer].lives += this.hpValue
+            this.currentPlayerOb.lives += this.hpValue
 
             //animation
-            const hpAnimation = document.querySelector(`.fa-caret-down.player${this.currentPlayer}`)
+            const hpAnimation = document.querySelector(`.fa-caret-down.player${this.currentPlayerIndex}`)
             hpAnimation.classList.add('active')
             hpAnimation.innerHTML = `<p>${this.hpValue}</p>`
             setTimeout(() => hpAnimation.classList.remove('active'), 500)
 
             //when player hp < 0
-            if (this.playersList[this.currentPlayer].lives <= 0) {
-                const playerNow = document.querySelector(`[data-number="${this.currentPlayer}"]`)
-                playerNow.remove()
-                this.playersList.splice(this.currentPlayer, 1, "")
+            if (this.currentPlayerOb.lives <= 0) {
+                //check if player has revive
+                if (this.currentPlayerOb.revive) {
+                    this.hpValue = this.maxHp
+                    this.currentPlayerOb.revive = false
+                    this.warnMessage.textContent = `Player ${this.currentPlayerIndex + 1} has revived!`
+                    this.warnEl.classList.add("active")
+                    return this.hpControl()
+
+                } else {
+                    const currentPlayerEl = document.querySelector(`[player-number="${this.currentPlayerIndex}"]`)
+                    currentPlayerEl.remove()
+                    this.playersList.splice(this.currentPlayerIndex, 1, "")
+                }
                 //check if everyone is dead 
                 if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
                     this.finishMessage.textContent = `Everyone is Dead! YOU LOOSE!`
                     this.finishScreen.classList.add("active")
                     //warn if one player is dead
                 } else {
-                    this.warnMessage.textContent = `Player ${this.currentPlayer + 1} is dead `
+                    this.warnMessage.textContent = `Player ${this.currentPlayerIndex + 1} is dead `
                     this.warnEl.classList.add("active")
                 }
             }
@@ -119,14 +132,16 @@ export class Game {
 
     nextTurn() {
 
-        this.currentPlayer++
+        this.currentPlayerIndex++
+        this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
         this.currentPlayerStatEl.textContent++
         //Player counter loop
-        if (this.currentPlayer >= this.playersList.length) {
-            this.currentPlayer = 0
+        if (this.currentPlayerIndex >= this.playersList.length) {
+            this.currentPlayerIndex = 0
             this.currentPlayerStatEl.textContent = 1
+            this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
         }
-        if (this.playersList[this.currentPlayer] === "") {
+        if (this.currentPlayerOb === "") {
 
             //check if everyone is dead -
             if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
@@ -153,8 +168,8 @@ export class Game {
             //player move
             this.playerMove()
 
-            if (this.playersList[this.currentPlayer].position >= this.mapEl.length - 1) {
-                this.finishMessage.textContent = `PLAYER ${this.currentPlayer + 1} WINS! `
+            if (this.currentPlayerOb.position >= this.mapEl.length - 1) {
+                this.finishMessage.textContent = `PLAYER ${this.currentPlayerIndex + 1} WINS! `
                 this.finishScreen.classList.add("active")
                 // this.playersList = []
                 // document.querySelector('.gameboard').innerHTML = ""
