@@ -1,5 +1,6 @@
 import { Dice } from "./dice"
 import { StatsUpdate } from "./statsUpdate"
+import { Events } from "./events"
 
 export class Game {
     constructor(playersList, lives) {
@@ -46,6 +47,7 @@ export class Game {
         this.currentPlayerOb.position += this.moves
 
         if (this.currentPlayerOb.position >= this.mapEl.length - 1) {
+            this.currentPlayerOb.position = this.mapEl.length - 1
             this.mapEl[this.mapEl.length - 1].appendChild(currentPlayerEl)
         } else { this.mapEl[this.currentPlayerOb.position].appendChild(currentPlayerEl) }
 
@@ -58,6 +60,7 @@ export class Game {
     }
 
     potionHeal(e) {
+
         if (e.target.parentElement.getAttribute("key") !== this.currentPlayerIndex.toFixed()) {
             this.warnMessage.innerHTML = "Its not your potion!"
             this.warnEl.classList.add("active")
@@ -73,14 +76,15 @@ export class Game {
             this.hpControl()
             e.target.remove()
             this.nextTurn()
+
         }
 
     }
 
-    hpControl() {// CHANGE WHEN YOU ITRODUCE EVENTS AND LOOSING HP
+    hpControl() {
         if (this.hpValue > 0) { //when healing
-            const statsUpdate = new StatsUpdate(this.currentPlayerOb, this.maxHp, this.hpValue)
-            statsUpdate.healthChange()
+            const statsUpdate = new StatsUpdate(this.currentPlayerOb)
+            statsUpdate.healthChange(this.hpValue, this.maxHp)
             this.currentPlayerOb.lives += this.hpValue
 
             //animation
@@ -93,10 +97,10 @@ export class Game {
                 this.currentPlayerOb.lives = this.maxHp
             }
 
-
+            console.log(this.currentPlayerOb)
         } else if (this.hpValue < 0) { //when loosing health
-            const statsUpdate = new StatsUpdate(this.currentPlayerOb, this.maxHp, this.hpValue, this.currentPlayerOb.revive)
-            statsUpdate.healthChange()
+            const statsUpdate = new StatsUpdate(this.currentPlayerOb)
+            statsUpdate.healthChange(this.hpValue, this.maxHp)
 
             this.currentPlayerOb.lives += this.hpValue
 
@@ -105,14 +109,14 @@ export class Game {
             hpAnimation.classList.add('active')
             hpAnimation.innerHTML = `<p>${this.hpValue}</p>`
             setTimeout(() => hpAnimation.classList.remove('active'), 500)
-
+            console.log(this.currentPlayerOb)
             //when player hp < 0
             if (this.currentPlayerOb.lives <= 0) {
+                this.currentPlayerOb.lives = 0
                 //check if player has revive
                 if (this.currentPlayerOb.revive) {
-                    statsUpdate.reviveChange()  //removing revive
+                    statsUpdate.reviveChange()  //removing revive 
                     this.hpValue = this.maxHp
-                    this.currentPlayerOb.revive = false
                     this.warnMessage.innerHTML = `Player ${this.currentPlayerIndex + 1} has revived!`
                     this.warnEl.classList.add("active")
                     this.warnBg.classList.add("active")
@@ -161,9 +165,25 @@ export class Game {
         }
     }
 
+    randomEvents() {
+        const currentArea = this.mapEl[this.currentPlayerOb.position].getAttribute('area')
+        if (currentArea === "win" || currentArea === "start") return
+
+        const events = new Events(this.currentPlayerOb, currentArea)
+        this.hpValue = events.hpValue
+
+        //adding revive if player doesnt have
+        if (events.reviveValue) {
+            const statsUpdate = new StatsUpdate(this.currentPlayerOb)
+            statsUpdate.reviveChange(events.reviveValue)
+        }
+
+    }
+
     startTurn() {
         if (this.turnFlag) {
             this.flagChange()
+            this.warnBg.classList.add("active")
         } else return
 
         //dice roll
@@ -174,22 +194,32 @@ export class Game {
         setTimeout(() => {
             //player move
             this.playerMove()
+
             if (this.currentPlayerOb.position >= this.mapEl.length - 1) {
                 this.finishMessage.textContent = `PLAYER ${this.currentPlayerIndex + 1} WINS! `
                 this.finishScreen.classList.add("active")
             }
+            //!!!!!!!if posible move to constructor
+            this.randomEvents()
+
+            this.hpControl()
+
         }, this.dice.rollTime / 2)
 
         //next turn
-        setTimeout(() => this.nextTurn(), this.dice.rollTime)
+        setTimeout(() => {
+            this.nextTurn()
+            this.warnBg.classList.remove("active")
+        }, this.dice.rollTime)
 
     }
 
     init() {
-        this.warnMessage.innerHTML = `<div class="game__warning-message--greetings"><h2>Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}</h2> 
-        An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You! This game Its a random generated board game, where players goal is to finish on last field without dying. Each colored field represents a <span>different location</span>, varying in difficulty level. In some locations, you can find healing <span>potions</span> or even reviving <span>relict</span>. But beware! There are many dangers in this world, that can <span>end your life</span>! <h2>Good luck!</h2></div>`
-        this.warnEl.classList.add("active")
-        this.warnBg.classList.add("active")
+        //COMENTED FOR DEVELOPMENT
+        // this.warnMessage.innerHTML = `<div class="game__warning-message--greetings"><h2>Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}</h2> 
+        // An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You! This game Its a random generated board game, where players goal is to finish on last field without dying. Each colored field represents a <span>different location</span>, varying in difficulty level. In some locations, you can find healing <span>potions</span> or even reviving <span>relic</span>. But beware! There are many dangers in this world, that can <span>end your life</span>! <h2>Good luck!</h2></div>`
+        // this.warnEl.classList.add("active")
+        // this.warnBg.classList.add("active")
 
         document.querySelector('.dice-btn').addEventListener('click', () => this.startTurn())
         this.potionEl.forEach(el => el.addEventListener('click', (e) => this.potionHeal(e)))

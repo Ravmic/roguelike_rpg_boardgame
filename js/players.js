@@ -67,7 +67,7 @@ export class Players {
             const potionStack = document.createElement('div')
             const potionTitle = document.createElement('p')
 
-            potionStack.setAttribute('class', "player-stats__potions player-stats--flex")
+            potionStack.setAttribute('class', `player-stats__potions player-stats--flex player${index}`)
             potionStack.setAttribute('key', index)
             potionTitle.textContent = "Potions:"
             potionTitle.setAttribute('class', 'player-stats__title')
@@ -80,9 +80,6 @@ export class Players {
                 potionStack.appendChild(potionEl)
                 statsWrap.appendChild(potionStack)
             })
-
-
-
 
             statsEl.appendChild(statsWrap)
         })
