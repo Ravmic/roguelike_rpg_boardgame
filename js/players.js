@@ -17,7 +17,7 @@ export class Players {
                 lives: parseInt(this.lives),
                 position: 0,
                 currentArea: "start",
-                revive: false,
+                revive: true,
                 potions: ["hp", "hp",]
             }
             this.playersArray.push(player)
@@ -30,9 +30,8 @@ export class Players {
             const playerEl = document.createElement('div')
             playerEl.classList.add(`player`)
             playerEl.classList.add(`player${index}`)
-
-            playerEl.setAttribute("data-number", index)
-
+            playerEl.setAttribute("player-number", index)
+            playerEl.innerHTML = `<p>${index + 1}</p>`
             startPoint.appendChild(playerEl)
         })
     }
