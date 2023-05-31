@@ -15,8 +15,6 @@ export class Game {
         this.currentPlayerStatEl = document.querySelector('.currentPlayer')
         this.currentPlayerStatEl.textContent = this.currentPlayerIndex + 1
 
-
-        console.log(this.playersList)
         //potions
         this.potionEl = document.querySelectorAll('.player-stats__potion')
 
@@ -63,6 +61,9 @@ export class Game {
             this.warnMessage.textContent = "Its not your potion!"
             this.warnEl.classList.add("active")
 
+        } else if (this.currentPlayerOb.lives >= this.maxHp) {
+            this.warnMessage.textContent = "You have full health"
+            this.warnEl.classList.add("active")
         } else {
             this.hpValue = 2
             this.currentPlayerOb.potions.splice(0, 1)
@@ -91,7 +92,7 @@ export class Game {
 
 
         } else if (this.hpValue < 0) { //when loosing health
-            const statsUpdate = new StatsUpdate(this.currentPlayerOb, this.maxHp, this.hpValue)
+            const statsUpdate = new StatsUpdate(this.currentPlayerOb, this.maxHp, this.hpValue, this.currentPlayerOb.revive)
             statsUpdate.healthChange()
 
             this.currentPlayerOb.lives += this.hpValue
@@ -106,6 +107,7 @@ export class Game {
             if (this.currentPlayerOb.lives <= 0) {
                 //check if player has revive
                 if (this.currentPlayerOb.revive) {
+                    statsUpdate.reviveChange()  //removing revive
                     this.hpValue = this.maxHp
                     this.currentPlayerOb.revive = false
                     this.warnMessage.textContent = `Player ${this.currentPlayerIndex + 1} has revived!`
@@ -163,20 +165,18 @@ export class Game {
         this.dice.rollDice()
         this.moves = this.dice.diceValue
 
-        //delay to execute functions after dice animation time
+        //delays to execute functions after dice animation time
         setTimeout(() => {
             //player move
             this.playerMove()
-
             if (this.currentPlayerOb.position >= this.mapEl.length - 1) {
                 this.finishMessage.textContent = `PLAYER ${this.currentPlayerIndex + 1} WINS! `
                 this.finishScreen.classList.add("active")
-                // this.playersList = []
-                // document.querySelector('.gameboard').innerHTML = ""
             }
-            //nextTurn
-            this.nextTurn()
-        }, this.dice.rollTime)
+        }, this.dice.rollTime / 2)
+
+        //next turn
+        setTimeout(() => this.nextTurn(), this.dice.rollTime)
 
     }
 

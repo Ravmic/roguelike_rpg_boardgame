@@ -33,4 +33,12 @@ export class StatsUpdate {
 
     }
 
+
+    reviveChange() {
+        if (this.currentPlayer.revive) {
+            this.reviveItem.textContent = "no"
+        } else {
+            this.reviveItem.textContent = "yes"
+        }
+    }
 }
