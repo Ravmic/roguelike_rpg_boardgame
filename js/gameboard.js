@@ -45,11 +45,12 @@ export class Gameboard {
     // }
     //for development
     landscapeSelect(value) {
-        if (value < 13) {
+        if (value < 6) {
             return "forest"
+        } else if (value >= 6) {
+            return "village"
         }
     }
-
     mapGenerator() {
         //generate rows
         for (let i = 0; this.rowNumbers > i; i++) {

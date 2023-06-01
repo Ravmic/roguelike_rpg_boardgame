@@ -5,6 +5,7 @@ export class StatsUpdate {
         this.healthStat = document.querySelector(`.player-stats__bar-stat.player${this.currentPlayer.nr}`)
         this.reviveItem = document.querySelector(`.player-stats__revive.player${this.currentPlayer.nr}`)
         this.potionStack = document.querySelector(`.player-stats__potions.player${this.currentPlayer.nr}`)
+        this.newPotionEl = []   //elements added to array for seting addEventListener later
 
     }
 
@@ -31,7 +32,6 @@ export class StatsUpdate {
 
     }
 
-
     reviveChange(getRevive = false) {
 
         if (getRevive) { //true if you got revive
@@ -45,23 +45,22 @@ export class StatsUpdate {
 
         }
 
-
-
-
     }
-    //NOT WORKING PROPERLY! you need to assign all elements to eventlistener everytime
-    // addPotion(potionValue) {
-    //     if (potionValue > 0) {
-    //         for (let i = 1; potionValue >= i; i++) {
-    //             const potionEl = document.createElement('img')
-    //             potionEl.setAttribute('class', 'player-stats__potion')
-    //             potionEl.src = "images/potion.svg"
-    //             potionEl.alt = 'potion'
-    //             this.potionStack.appendChild(potionEl)
-    //             this.currentPlayer.potions.push("hp")
-    //         }
 
-    //     }
-    // }
+    addPotion(potionValue) {
+        if (potionValue > 0) {
+            for (let i = 0; potionValue > i; i++) {
+                const potionEl = document.createElement('img')
+                potionEl.setAttribute('class', 'player-stats__potion')
+                potionEl.setAttribute('key', this.currentPlayer.nr)
+                potionEl.src = "images/potion.svg"
+                potionEl.alt = 'potion'
+                this.potionStack.appendChild(potionEl)
+                this.currentPlayer.potions.push("hp")
+                this.newPotionEl.push(potionEl)
+            }
+
+        }
+    }
 
 }

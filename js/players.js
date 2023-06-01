@@ -17,8 +17,8 @@ export class Players {
                 lives: parseInt(this.lives),
                 position: 0,
                 currentArea: "start",
-                revive: true,
-                potions: ["hp", "hp",]
+                revive: false,
+                potions: ["hp"]
             }
             this.playersArray.push(player)
         }
@@ -59,7 +59,7 @@ export class Players {
         </div>
      </div>
     <div class="player-stats__revive player-stats--flex">
-        <p class="player-stats__title">Has revive:</p>
+        <p class="player-stats__title">Has relic:</p>
         <p class="player-stats__revive  player${index}">${this.playersArray[index].revive ? "yes" : "no"}</p>
     </div>`
 
@@ -68,13 +68,14 @@ export class Players {
             const potionTitle = document.createElement('p')
 
             potionStack.setAttribute('class', `player-stats__potions player-stats--flex player${index}`)
-            potionStack.setAttribute('key', index)
+            // potionStack.setAttribute('key', index)
             potionTitle.textContent = "Potions:"
             potionTitle.setAttribute('class', 'player-stats__title')
             potionStack.appendChild(potionTitle)
             this.playersArray[index].potions.forEach(potion => {
                 const potionEl = document.createElement('img')
                 potionEl.setAttribute('class', 'player-stats__potion')
+                potionEl.setAttribute('key', index)
                 potionEl.src = "images/potion.svg"
                 potionEl.alt = 'potion'
                 potionStack.appendChild(potionEl)

@@ -35,16 +35,26 @@
             font-size: 2rem;
         }
 
-        &__comment.red {
+        &__comment.vbad {
+            color: #be0a0a;
+            text-shadow: 0px 0px 5px #be0a0a;
+        }
+
+        &__comment.bad {
             color: #d43939;
         }
 
-        &__comment.gray {
+        &__comment.neutral {
             color: #8b8b8b;
         }
 
-        &__comment.green {
+        &__comment.good {
             color: #2fbb32;
+        }
+
+        &__comment.vgood {
+            color: #b9bb35;
+            text-shadow: 0px 0px 5px #e4e720
         }
 
 
