@@ -1,5 +1,10 @@
 import { Forest } from "./forestEv"
 import { Village } from "./villageEv"
+import { Swamp } from "./swampEv"
+import { Mountain } from "./mountainEv"
+import { Graveyard } from "./graveyardEv"
+import { DragonsCave } from "./dragonsCaveEv"
+import { Temple } from "./templeEv"
 
 export class Events {
     constructor(player, blockValue) {
@@ -21,9 +26,18 @@ export class Events {
 
         if (this.currentLandscape === "forest") {
             landscapeEv = new Forest(eventLuck)
-        }
-        else if (this.currentLandscape === "village") {
+        } else if (this.currentLandscape === "village") {
             landscapeEv = new Village(eventLuck)
+        } else if (this.currentLandscape === "swamp") {
+            landscapeEv = new Swamp(eventLuck)
+        } else if (this.currentLandscape === "mountain") {
+            landscapeEv = new Mountain(eventLuck)
+        } else if (this.currentLandscape === "graveyard") {
+            landscapeEv = new Graveyard(eventLuck, this.currentPlayer)
+        } else if (this.currentLandscape === "dragonsCave") {
+            landscapeEv = new DragonsCave(eventLuck, this.currentPlayer)
+        } else if (this.currentLandscape === "temple") {
+            landscapeEv = new Temple(eventLuck)
         }
 
         this.hpValue = landscapeEv.hp
@@ -31,11 +45,9 @@ export class Events {
         this.commentType = landscapeEv.commentType
         this.eventComment = landscapeEv.comment
         this.reviveValue = landscapeEv.revive
-        this.potionsValue = landscapeEv.potions
+        this.potionsValue = landscapeEv.potionsValue
 
-
-        // console.log(this.hpValue, this.reviveValue, this.event)
-
+        console.log(this.currentPlayer)
         this.showEvent()
     }
 
@@ -55,6 +67,10 @@ export class Events {
         } else if (this.commentType === "bad") {
 
             this.commentEl.textContent = `You've lost ${this.hpValue * -1}hp points`
+
+        } else if (this.commentType === "vbad") {
+
+            this.commentEl.textContent = this.eventComment
 
         }
 

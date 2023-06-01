@@ -18,7 +18,7 @@ export class Players {
                 position: 0,
                 currentArea: "start",
                 revive: false,
-                potions: ["hp"]
+                potions: ["hp", "hp", "hp"]
             }
             this.playersArray.push(player)
         }

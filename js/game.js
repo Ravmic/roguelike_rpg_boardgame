@@ -53,13 +53,13 @@ export class Game {
     }
 
     skipTurn() {
-        this.hpValue = -2
+        this.hpValue = 0
         this.hpControl()
         this.nextTurn()
     }
 
     potionHeal(e) {
-        console.log(e.target)
+
         if (e.target.getAttribute("key") === this.currentPlayerIndex.toFixed()) {
 
             if (this.currentPlayerOb.lives >= this.maxHp) {
@@ -176,11 +176,9 @@ export class Game {
         if (events.reviveValue) {
             statsUpdate.reviveChange(events.reviveValue)
         }//adding potions if potionsValue is > 0
-        if (events.potionsValue > 0) {
-            statsUpdate.addPotion(events.potionsValue)
+        if (events.potionsValue) {
+            statsUpdate.potionChange(events.potionsValue)
             statsUpdate.newPotionEl.forEach(potion => potion.addEventListener("click", (e) => this.potionHeal(e)))
-
-
         }
 
 
@@ -205,11 +203,11 @@ export class Game {
                 this.finishMessage.textContent = `PLAYER ${this.currentPlayerIndex + 1} WINS! `
                 this.finishScreen.classList.add("active")
             }
-            //!!!!!!!if posible move to constructor
+
             this.randomEvents()
 
             this.hpControl()
-
+            console.log(this.currentPlayerOb)
         }, this.dice.rollTime / 2)
 
         //next turn
@@ -221,10 +219,10 @@ export class Game {
     }
 
     init() {
-        this.warnMessage.innerHTML = `<div class="game__warning-message--greetings"><h2>Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}</h2> 
-        An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You! This game Its a random generated board game, where players goal is to finish on last field without dying. Each colored field represents a <span>different location</span>, varying in difficulty level. In some locations, you can find some healing items, <span>potions</span> or even reviving <span>relic</span>. But beware! There are many dangers in this world, that can <span>end your life</span>! <h2>Good luck!</h2></div>`
-        this.warnEl.classList.add("active")
-        this.warnBg.classList.add("active")
+        // this.warnMessage.innerHTML = `<div class="game__warning-message--greetings"><h2>Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}</h2> 
+        // An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You! This game Its a random generated board game, where players goal is to finish on last field without dying. Each colored field represents a <span>different location</span>, varying in difficulty level. In some locations, you can find some healing items, <span>potions</span> or even reviving <span>relic</span>. But beware! There are many dangers in this world, that can <span>end your life</span>! <h2>Good luck!</h2></div>`
+        // this.warnEl.classList.add("active")
+        // this.warnBg.classList.add("active")
 
         document.querySelector('.dice-btn').addEventListener('click', () => this.startTurn())
         this.potionEl.forEach(el => el.addEventListener('click', (e) => this.potionHeal(e)))

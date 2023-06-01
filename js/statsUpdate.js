@@ -5,6 +5,7 @@ export class StatsUpdate {
         this.healthStat = document.querySelector(`.player-stats__bar-stat.player${this.currentPlayer.nr}`)
         this.reviveItem = document.querySelector(`.player-stats__revive.player${this.currentPlayer.nr}`)
         this.potionStack = document.querySelector(`.player-stats__potions.player${this.currentPlayer.nr}`)
+        this.currentPotions = [...document.querySelectorAll(`.player-stats__potions.player${this.currentPlayer.nr} img`)]
         this.newPotionEl = []   //elements added to array for seting addEventListener later
 
     }
@@ -34,20 +35,20 @@ export class StatsUpdate {
 
     reviveChange(getRevive = false) {
 
-        if (getRevive) { //true if you got revive
-            if (this.currentPlayer.revive) return //when player have revive
+        if (getRevive === 1) { //1 if you found revive
+            if (this.currentPlayer.revive) return //when player have revive return
 
             this.reviveItem.textContent = "yes"
             this.currentPlayer.revive = true
-        } else {
-            this.reviveItem.textContent = "no" //when dont have- fn use it
+        } else if (getRevive === false || getRevive === -1) {
+            this.reviveItem.textContent = "no"  //when loosing it or using it
             this.currentPlayer.revive = false
 
         }
 
     }
 
-    addPotion(potionValue) {
+    potionChange(potionValue) {
         if (potionValue > 0) {
             for (let i = 0; potionValue > i; i++) {
                 const potionEl = document.createElement('img')
@@ -58,6 +59,13 @@ export class StatsUpdate {
                 this.potionStack.appendChild(potionEl)
                 this.currentPlayer.potions.push("hp")
                 this.newPotionEl.push(potionEl)
+            }
+        }
+        else if (potionValue < 0) {
+            if (this.currentPlayer.potions <= 0) return
+            for (let i = 0; (potionValue * -1) > i; i++) {
+                this.currentPotions[i].remove()
+                this.currentPlayer.potions.splice(0, 1)
             }
 
         }

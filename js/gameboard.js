@@ -7,50 +7,26 @@ export class Gameboard {
 
         this.mapGenerator()
     }
-    // First version
-    // landscapeSelect(value) {
-    //     if (value === 0) {
-    //         return "forest"
-    //     } else if (value === 1) {
-    //         return "city"
-    //     } else if (value === 2) {
-    //         return "swamp"
-    //     } else if (value === 3) {
-    //         return "castle"
-    //     } else if (value === 4) {
-    //         return "hell"
-    //     } else if (value === 5) {
-    //         return "graveyard"
-    //     } else if (value === 6) {
-    //         return "temple"
-    //     }
-    // }
-    //Second version
-    // landscapeSelect(value) {
-    //     if (value < 2) {
-    //         return "forest"
-    //     } else if (value < 4 && value >= 2) {
-    //         return "city"
-    //     } else if (value < 6 && value >= 4) {
-    //         return "swamp"
-    //     } else if (value < 8 && value >= 6) {
-    //         return "castle"
-    //     } else if (value < 10 && value >= 8) {
-    //         return "graveyard"
-    //     } else if (value < 11 && value >= 9) {
-    //         return "hell"
-    //     } else if (value <= 11) {
-    //         return "temple"
-    //     }
-    // }
-    //for development
+
     landscapeSelect(value) {
-        if (value < 6) {
+        if (value < 2) {
             return "forest"
-        } else if (value >= 6) {
+        } else if (value < 4 && value >= 2) {
             return "village"
+        } else if (value < 6 && value >= 4) {
+            return "swamp"
+        } else if (value < 8 && value >= 6) {
+            return "mountain"
+        } else if (value < 10 && value >= 8) {
+            return "graveyard"
+        } else if (value < 11 && value >= 9) {
+            return "dragonsCave"
+        } else if (value <= 11) {
+            return "temple"
         }
     }
+
+
     mapGenerator() {
         //generate rows
         for (let i = 0; this.rowNumbers > i; i++) {
