@@ -2,11 +2,10 @@ export class DragonsCave {
     constructor(luck, player) {
         this.currentPlayer = player
         this.luck = luck
-        this.vgoodEv = ['vgood']
-        this.goodEv = ['good']
-        this.neutralEv = ['neutral']
-        this.badEv = ['bad']
-        this.vbadEv = [`vbad`]
+        this.vgoodEv = [`I was hiding behind stone pillars while the dragon tried to kill me. After it stopped breathing fire, I ran in its direction and swung my sword through its neck. The beast was dead! I searched its chamber and found a ${this.potionsValue > 1 ? `${this.potionsValue} potions!` : `${this.potionsValue} potion!`}`]
+        this.neutralEv = ['"This place smells like sulfur', `I'm really lucky that I didn't find any dragons.`, 'The pounding of its tail is audible from miles away.',]
+        this.badEv = [`His claws was masive! I barely dodge it, but I couln't hide from the tale`, `A red wyvern dropped from the cave ceiling right on me. My armor blocked most of the damage, but it gave me some serious burns.`, `I had a hard time fighting those wyvern. I still feel its teeth piercing my armor.`, `Suddenly, the walls around me started to break, and lava started leaking through the cracks. I barely escaped the place, but I burned myself badly...`]
+        this.vbadEv = [`I couldn't escape... As the dragon saw me, he spit a giant stream of fire in my direction. Hiding in the cave corridor was my only hope...`]
 
         this.hp = null
         this.revive = null

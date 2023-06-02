@@ -45,14 +45,17 @@
                 }
 
                 .player {
-                    position: relative;
+                    position: absolute;
                     display: flex;
-                    flex-basis: 50%;
+                    top: 0;
+                    left: 0;
+                    width: 50%;
                     height: 50%;
                     background-color: rgb(255, 82, 82);
                     border-radius: 50%;
                     z-index: 1;
                     transition: 0.2s;
+
 
                     p {
                         position: absolute;
@@ -70,6 +73,8 @@
 
                 .player:hover {
                     transform: scale(1.5);
+                    z-index: 10;
+
 
                     p {
                         opacity: 1;
@@ -78,16 +83,35 @@
 
                 .player1 {
                     background-color: rgb(99, 82, 255);
+                    top: 0;
+                    left: 50%;
                 }
 
                 .player2 {
                     background-color: rgb(252, 209, 68);
+                    top: 50%;
+                    left: 50%;
                 }
 
                 .player3 {
                     background-color: rgb(200, 82, 255);
+                    top: 50%;
+                    left: 0;
                 }
 
+
+
+                .player4 {
+                    background-color: rgb(49, 218, 72);
+                    top: 25%;
+                    left: 50%;
+                }
+
+                .player5 {
+                    background-color: rgb(107, 107, 107);
+                    top: 25%;
+                    left: 0;
+                }
 
 
             }

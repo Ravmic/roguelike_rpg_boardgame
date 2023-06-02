@@ -31,13 +31,13 @@ export class Events {
         } else if (this.currentLandscape === "swamp") {
             landscapeEv = new Swamp(eventLuck)
         } else if (this.currentLandscape === "mountain") {
-            landscapeEv = new Mountain(eventLuck)
+            landscapeEv = new Mountain(eventLuck, this.currentPlayer)
         } else if (this.currentLandscape === "graveyard") {
             landscapeEv = new Graveyard(eventLuck, this.currentPlayer)
         } else if (this.currentLandscape === "dragonsCave") {
             landscapeEv = new DragonsCave(eventLuck, this.currentPlayer)
         } else if (this.currentLandscape === "temple") {
-            landscapeEv = new Temple(eventLuck)
+            landscapeEv = new Temple(eventLuck, this.currentPlayer)
         }
 
         this.hpValue = landscapeEv.hp

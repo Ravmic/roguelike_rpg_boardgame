@@ -17,7 +17,7 @@ export class Players {
                 lives: parseInt(this.lives),
                 position: 0,
                 currentArea: "start",
-                revive: false,
+                revive: true,
                 potions: ["hp"]
             }
             this.playersArray.push(player)
@@ -79,9 +79,9 @@ export class Players {
                 potionEl.src = "images/potion.svg"
                 potionEl.alt = 'potion'
                 potionStack.appendChild(potionEl)
-                statsWrap.appendChild(potionStack)
-            })
 
+            })
+            statsWrap.appendChild(potionStack)
             statsEl.appendChild(statsWrap)
         })
 
