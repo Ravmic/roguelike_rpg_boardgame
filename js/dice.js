@@ -1,11 +1,12 @@
 import "../public/sounds/roll-effect.mp3"
 export class Dice {
-    constructor() {
+    constructor(maxValue) {
         this.diceEl = document.querySelector(".dice")
         this.diceBtn = document.querySelector(".dice-btn")
         this.diceValue = null
         this.rotation = 0
         this.rollTime = 1500
+        this.diceMaxValue = maxValue
 
     }
 
@@ -22,9 +23,9 @@ export class Dice {
 
     rollDice = () => {
         this.rollSound()
-        const diceValue = Math.floor(Math.random() * 6 + 1)
+        const diceValue = Math.floor(Math.random() * this.diceMaxValue + 1)
 
-
+        console.log(diceValue)
         this.diceValue = diceValue
         this.diceAnimation(diceValue)
 

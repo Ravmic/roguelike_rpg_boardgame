@@ -3,13 +3,13 @@ import { StatsUpdate } from "./statsUpdate"
 import { Events } from "./events"
 
 export class Game {
-    constructor(playersList, lives) {
+    constructor(playersList, lives, firstPlayer) {
         //map
         this.mapEl = document.querySelectorAll('.gameboard__row--block')
 
         //Players
         this.playersList = [...playersList]
-        this.currentPlayerIndex = 0
+        this.currentPlayerIndex = firstPlayer
         this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
         this.maxHp = parseInt(lives)
         this.hpValue = 0
@@ -22,6 +22,7 @@ export class Game {
         //alert
         this.warnEl = document.querySelector(".game__warning")
         this.warnBg = document.querySelector(".game__popup-bg")
+        this.warnWait = document.querySelector('.game__popup-img')
         this.warnMessage = document.querySelector(".game__warning-message")
 
         //Win/loose Screen
@@ -29,7 +30,7 @@ export class Game {
         this.finishMessage = document.querySelector(".game__msg-board-message ")
 
         //dice
-        this.dice = new Dice()
+        this.dice = new Dice(6)
         this.moves = null
         this.turnFlag = true
         this.init()
@@ -188,6 +189,8 @@ export class Game {
         if (this.turnFlag) {
             this.flagChange()
             this.warnBg.classList.add("active")
+            this.warnWait.classList.add('active')
+
         } else return
 
         //dice roll
@@ -214,15 +217,32 @@ export class Game {
         setTimeout(() => {
             this.nextTurn()
             this.warnBg.classList.remove("active")
+            this.warnWait.classList.remove('active')
         }, this.dice.rollTime)
 
     }
 
+
+
+    newGame() {
+        const greetingEl = document.querySelector('.game--greeting')
+        const greetingBtn = document.querySelector('.game--greeting.fa-xmark')
+        const greetingsMsgEl = document.querySelector(".game--greeting")
+        document.querySelector('.game--greeting-title').textContent = `Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}`
+        document.querySelector('.game--greeting-await').textContent = `An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You!`
+
+        if (this.playersList.length > 1) {
+            this.warnMessage.textContent = `Player nr ${this.currentPlayerIndex + 1} starts the game!`
+            this.warnEl.classList.add("active")
+            this.warnBg.classList.add("active")
+        }
+
+        greetingsMsgEl.classList.add("active")
+        greetingBtn.addEventListener('click', () => greetingEl.classList.remove('active'))
+    }
+
     init() {
-        // this.warnMessage.innerHTML = `<div class="game__warning-message--greetings"><h2>Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}</h2> 
-        // An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You! This game Its a random generated board game, where players goal is to finish on last field without dying. Each colored field represents a <span>different location</span>, varying in difficulty level. In some locations, you can find some healing items, <span>potions</span> or even reviving <span>relic</span>. But beware! There are many dangers in this world, that can <span>end your life</span>! <h2>Good luck!</h2></div>`
-        // this.warnEl.classList.add("active")
-        // this.warnBg.classList.add("active")
+        this.newGame()
 
         document.querySelector('.dice-btn').addEventListener('click', () => this.startTurn())
         this.potionEl.forEach(el => el.addEventListener('click', (e) => this.potionHeal(e)))

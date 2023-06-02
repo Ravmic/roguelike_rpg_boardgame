@@ -26,7 +26,7 @@ export class DragonsCave {
             this.hp = 0
             this.randomEv = this.vgoodEv[randomTxtEv]
             this.commentType = "vgood"
-            this.potionsValue = 1
+            this.potionsValue = 2
             this.comment = `You just found a ${this.potionsValue > 1 ? `${this.potionsValue} potions!` : `${this.potionsValue} potion!`}`
 
         } //neutral
@@ -39,7 +39,7 @@ export class DragonsCave {
         } //bad
         else if (this.luck >= 2 && this.luck < 10) {
             const randomTxtEv = Math.floor(Math.random() * this.badEv.length)
-            this.hp = -4
+            this.hp = -3
             this.randomEv = this.badEv[randomTxtEv]
             this.commentType = "bad"
         }//vbad

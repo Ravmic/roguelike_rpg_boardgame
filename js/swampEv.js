@@ -11,7 +11,6 @@ export class Swamp {
         this.hp = null
         this.randomEv = ""
         this.commentType = ""
-        console.log(this.luck)
         this.randomizeEvent()
     }
 

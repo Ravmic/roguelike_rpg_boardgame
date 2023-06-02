@@ -51,6 +51,7 @@ export class GameStart {
 
     }
 
+
     //Game init 
     startGame(playersNr, lives, mapSize) {
         if (playersNr && lives && mapSize) {
@@ -66,9 +67,10 @@ export class GameStart {
             //generating players
             const newPlayersList = new Players(playersNr, lives).playersArray
 
+            const firstPlayer = Math.floor(Math.random() * playersNr)
 
             //initialize main game module
-            new Game(newPlayersList, lives)
+            new Game(newPlayersList, lives, firstPlayer)
 
         } else {
             this.warnEl.classList.add("active")

@@ -22,7 +22,7 @@ export class StatsUpdate {
             this.healthStat.textContent = `${maxHp}/${maxHp}`
         } else if ((this.currentPlayer.lives + hpValue <= 0)) {
             //When hp <= 0
-            this.healthBarFill.style.left = '100%'
+            this.healthBarFill.style.left = '-110%'
             this.healthStat.textContent = `${0}/${maxHp}`
 
         } else {

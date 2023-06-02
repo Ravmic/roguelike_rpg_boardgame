@@ -52,7 +52,7 @@
         </div>
         <div class="game__music">
             <audio class="game__music-mp3" loop>
-                <!-- <source src="sounds/song.mp3" type="audio/mpeg"> -->
+                <source src="sounds/song.mp3" type="audio/mpeg">
             </audio>
             <div class="volume-control">
                 <i class="volume-control__icon fa-solid fa-volume-xmark"></i>
@@ -73,37 +73,31 @@
                 <div class="menu__logo">
                     <h1>Roguelike RPG board game</h1>
                 </div>
+                <div class="menu__settings-wrapper">
+                    <div class="menu__settings menu__settings--players">
+                        <h2 class="menu__settings-title ">Players:</h2>
+                        <div class="menu__settings-btn" key="1">I</div>
+                        <div class="menu__settings-btn" key="2">II</div>
+                        <div class="menu__settings-btn" key="3">III</div>
+                        <div class="menu__settings-btn" key="4">IV</div>
+                    </div>
+                    <div class="menu__settings menu__settings--lives">
+                        <h2 class="menu__settings-title ">Lives:</h2>
+                        <div class="menu__settings-btn" key="4">IV</div>
+                        <div class="menu__settings-btn" key="5">V</div>
+                        <div class="menu__settings-btn" key="6">VI</div>
+                        <div class="menu__settings-btn" key="7">VII</div>
+                        <div class="menu__settings-btn" key="8">VIII</div>
 
-                <div class="menu__settings menu__settings--players">
-                    <h2 class="menu__settings-title ">Players</h2>
-                    <div class="menu__settings-btn" key="1">I</div>
-                    <div class="menu__settings-btn" key="2">II</div>
-                    <div class="menu__settings-btn" key="3">III</div>
-                    <div class="menu__settings-btn" key="4">IV</div>
-                </div>
-                <div class="menu__settings menu__settings--lives">
-                    <h2 class="menu__settings-title ">Lives</h2>
-                    <!-- <div class="menu__settings-btn" key="1">I</div> -->
-                    <div class="menu__settings-btn" key="2">II</div>
-                    <!-- <div class="menu__settings-btn" key="3">III</div> -->
-                    <div class="menu__settings-btn" key="4">IV</div>
-                    <!-- <div class="menu__settings-btn" key="5">V</div> -->
-                    <div class="menu__settings-btn" key="6">VI</div>
-                    <!-- <div class="menu__settings-btn" key="7">VII</div> -->
-                    <div class="menu__settings-btn" key="8">VIII</div>
-                    <!-- <div class="menu__settings-btn" key="9">IX</div> -->
-                    <div class="menu__settings-btn" key="10">X</div>
-                    <!-- <div class="menu__settings-btn" key="11">XI</div> -->
-                    <div class="menu__settings-btn" key="12">XII</div>
-                </div>
-                <div class="menu__settings menu__settings--mapSize">
-                    <h2 class="menu__settings-title ">Map Size</h2>
-                    <div class="menu__settings-btn" key="12">12</div>
-                    <div class="menu__settings-btn" key="24">24</div>
-                    <div class="menu__settings-btn" key="36">36</div>
-                    <div class="menu__settings-btn" key="48">48</div>
-                    <div class="menu__settings-btn" key="60">60</div>
-                    <div class="menu__settings-btn" key="72">72</div>
+                    </div>
+                    <div class="menu__settings menu__settings--mapSize">
+                        <h2 class="menu__settings-title ">Map Size:</h2>
+                        <div class="menu__settings-btn" key="24">24</div>
+                        <div class="menu__settings-btn" key="36">36</div>
+                        <div class="menu__settings-btn" key="48">48</div>
+                        <div class="menu__settings-btn" key="60">60</div>
+                        <div class="menu__settings-btn" key="72">72</div>
+                    </div>
                 </div>
                 <div class="menu__buttons">
                     <button class="start">Start game</button>
@@ -117,7 +111,21 @@
             <i class="fa-solid fa-xmark"></i>
             <p class="game__warning-message">Choose number of players, lives and map size to start!</p>
         </div>
-        <div class="game__popup-bg"></div>
+        <div class="game__warning game--greeting">
+            <i class="fa-solid fa-xmark game--greeting"></i>
+            <div class="game__warning-message game--greeting">
+                <h2 class="game__warning-message  game--greeting-title"></h2>
+                <span class="game__warning-message  game--greeting-await"></span> This game Its a
+                random
+                generated board game, where players goal is to finish on last field without dying. Each colored field
+                represents a <span>different location</span>, varying in difficulty level. In some locations, you can
+                find
+                some healing items, <span>potions</span> or even reviving <span>relic</span>. But beware! There are many
+                dangers in this world, that can <span>end your life</span>!
+                <h2 class="game__warning-message game--greeting-title">Good luck!</h2>
+            </div>
+        </div>
+        <div class="game__popup-bg"><img class="game__popup-img" src="images/hourglass.svg" alt="hourglass"></div>
     </div>
 </body>
 

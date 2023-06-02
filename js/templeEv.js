@@ -37,7 +37,7 @@ export class Temple {
         //good
         else if (this.luck >= 5 && this.luck < 11) {
             const randomTxtEv = Math.floor(Math.random() * this.goodEv.length)
-            this.hp = 5
+            this.hp = 3
             this.randomEv = this.goodEv[randomTxtEv]
             this.commentType = "good"
 

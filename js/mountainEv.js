@@ -21,16 +21,16 @@ export class Mountain {
         //vgood
         if (this.luck < 1) {
             const randomTxtEv = Math.floor(Math.random() * this.vgoodEv.length)
-            this.hp = 1
+            this.hp = 0
             this.randomEv = this.vgoodEv[randomTxtEv]
             this.commentType = "vgood"
             this.potionsValue = 1
-            this.comment = `WOW! You gained ${this.potionsValue} potion and ${this.hp}hp points!`
+            this.comment = `You just found a ${this.potionsValue > 1 ? `${this.potionsValue} potions!` : `${this.potionsValue} potion!`}`
 
         } //good
         else if (this.luck >= 1 && this.luck < 3) {
             const randomTxtEv = Math.floor(Math.random() * this.goodEv.length)
-            this.hp = 1
+            this.hp = 2
             this.randomEv = this.goodEv[randomTxtEv]
             this.commentType = "good"
 
@@ -50,7 +50,7 @@ export class Mountain {
         }//vbad
         else if (this.luck >= 11) {
             const randomTxtEv = Math.floor(Math.random() * this.vbadEv.length)
-            this.hp = -2
+            this.hp = 0
             this.randomEv = this.vbadEv[randomTxtEv]
             this.commentType = "vbad"
             this.potionsValue = -1

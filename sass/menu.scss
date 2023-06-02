@@ -31,46 +31,54 @@
 
         }
 
-        &__settings {
+        .menu__settings-wrapper {
+            margin-top: 50px;
             display: flex;
-            align-items: center;
-            margin: 30px 0;
-            font-size: 2rem;
-            color: #F5DEB3;
+            flex-direction: column;
 
 
-            &-title {
-                margin-right: 20px;
+            .menu__settings {
+                display: flex;
+                align-items: center;
+                margin: 20px 0;
+                font-size: 2rem;
+                color: #F5DEB3;
+
+
+                &-title {
+                    margin-right: 20px;
+                }
+
+                &-btn {
+                    margin: 0 5px;
+                    width: $menu-btn-size;
+                    height: $menu-btn-size;
+                    font-size: 1.9rem;
+                    background-color: #F5DEB3;
+                    border: 3px solid #F5DEB3;
+                    color: #935F2C;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: calc($menu-btn-size - 3px);
+                    font-weight: 700;
+                    transition: 0.2s;
+                    cursor: pointer;
+
+
+                }
+
+                &-btn:hover {
+                    color: white;
+                    background-color: #935F2C;
+
+                }
+
+                &-btn.active {
+                    color: white;
+                    background-color: #935F2C;
+                }
             }
 
-            &-btn {
-                margin: 0 5px;
-                width: $menu-btn-size;
-                height: $menu-btn-size;
-                font-size: 1.9rem;
-                background-color: #F5DEB3;
-                border: 3px solid #F5DEB3;
-                color: #935F2C;
-                border-radius: 50%;
-                text-align: center;
-                line-height: calc($menu-btn-size - 3px);
-                font-weight: 700;
-                transition: 0.2s;
-                cursor: pointer;
-
-
-            }
-
-            &-btn:hover {
-                color: white;
-                background-color: #935F2C;
-
-            }
-
-            &-btn.active {
-                color: white;
-                background-color: #935F2C;
-            }
         }
 
         &__buttons {
@@ -91,6 +99,8 @@
             }
         }
     }
+
+
 
 
 }
