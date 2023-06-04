@@ -17,7 +17,7 @@ export class Players {
                 lives: parseInt(this.lives),
                 position: 0,
                 currentArea: "start",
-                revive: true,
+                revive: false,
                 potions: ["hp"]
             }
             this.playersArray.push(player)

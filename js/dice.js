@@ -11,7 +11,7 @@ export class Dice {
     }
 
     rollSound() {
-        const rollSound = new Audio("../sounds/roll-effect.mp3")
+        const rollSound = new Audio("./sounds/roll-effect.mp3")
         rollSound.play()
         rollSound.volume = 0.2
     }

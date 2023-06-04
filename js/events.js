@@ -38,7 +38,11 @@ export class Events {
             landscapeEv = new DragonsCave(eventLuck, this.currentPlayer)
         } else if (this.currentLandscape === "temple") {
             landscapeEv = new Temple(eventLuck, this.currentPlayer)
+        } else if (this.currentLandscape === "rest") {
+            landscapeEv = this.rest(eventLuck)
         }
+
+
 
         this.hpValue = landscapeEv.hp
         this.event = landscapeEv.randomEv
@@ -47,7 +51,6 @@ export class Events {
         this.reviveValue = landscapeEv.revive
         this.potionsValue = landscapeEv.potionsValue
 
-        console.log(this.currentPlayer)
         this.showEvent()
     }
 
@@ -71,12 +74,39 @@ export class Events {
         } else if (this.commentType === "vbad") {
 
             this.commentEl.textContent = this.eventComment
-
         }
 
     }
 
 
+    rest(luck) {
+        console.log(luck)
+        const restEv = {
+            hp: 0,
+            randomEv: "",
+            commentType: "",
+        }
+        //good
+        if (luck < 4) {
+            restEv.hp = 1
+            restEv.commentType = "good"
+            restEv.randomEv = "The night was quiet, and I slept pretty well."
+
+
+        }  //neutral
+        else if (luck >= 4 && luck < 8) {
+            restEv.hp = 0
+            restEv.commentType = "neutral"
+            restEv.randomEv = "Sudden noises constantly wake me up. I couldn't close my eyes even once."
+        } //bad
+        else if ((luck >= 8)) {
+            restEv.hp = -1
+            restEv.commentType = "bad"
+            restEv.randomEv = "What a horrible night! Someone was trying to rob me. I had to fight..."
+        }
+
+        return restEv
+    }
 
 
 }

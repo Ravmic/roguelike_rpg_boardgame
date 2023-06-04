@@ -60,7 +60,6 @@
     }
 
 
-
     // apear when warning show up
     &__popup-bg {
         position: fixed;
@@ -71,6 +70,7 @@
         height: 100%;
         background-color: rgba(0, 0, 0, 0.20);
         z-index: 10;
+        user-select: none;
 
         .game__popup-img {
             height: 80px;
@@ -79,6 +79,7 @@
             left: 50%;
             transform: translate(-50%, -50%) rotate(0deg);
             display: none;
+            user-select: none;
         }
 
         .game__popup-img.active {

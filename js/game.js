@@ -42,6 +42,17 @@ export class Game {
         setTimeout(() => { this.turnFlag = !this.turnFlag }, this.dice.rollTime)
     }
 
+    displayWarn(message) {
+        this.warnMessage.innerHTML = message
+        this.warnEl.classList.add("active")
+        this.warnBg.classList.add("active")
+    }
+
+    loadScreenToggle() {
+        this.warnBg.classList.toggle("active")
+        this.warnWait.classList.toggle('active')
+    }
+
 
     playerMove() {
         const currentPlayerEl = document.querySelector(`[player-number="${this.currentPlayerIndex}"]`)
@@ -53,10 +64,26 @@ export class Game {
 
     }
 
-    skipTurn() {
-        this.hpValue = 0
-        this.hpControl()
-        this.nextTurn()
+    restTurn() {
+        if (this.turnFlag) {
+            this.flagChange()
+            this.loadScreenToggle()
+        } else return
+
+        //delays to execute functions for loading effect
+        setTimeout(() => {
+            const events = new Events(this.currentPlayerOb, "rest")
+            this.hpValue = events.hpValue
+            this.hpControl()
+        }, this.dice.rollTime / 2)
+
+
+
+        setTimeout(() => {
+            this.nextTurn()
+            this.loadScreenToggle()
+        }, this.dice.rollTime)
+
     }
 
     potionHeal(e) {
@@ -64,9 +91,7 @@ export class Game {
         if (e.target.getAttribute("key") === this.currentPlayerIndex.toFixed()) {
 
             if (this.currentPlayerOb.lives >= this.maxHp) {
-                this.warnMessage.innerHTML = "You have full health"
-                this.warnEl.classList.add("active")
-                this.warnBg.classList.add("active")
+                this.displayWarn("You have full health")
             } else {
                 this.hpValue = 2
                 this.currentPlayerOb.potions.splice(0, 1)
@@ -75,9 +100,7 @@ export class Game {
                 this.nextTurn()
             }
         } else {
-            this.warnMessage.innerHTML = "Its not your potion!"
-            this.warnEl.classList.add("active")
-            this.warnBg.classList.add("active")
+            this.displayWarn("Its not your potion!")
         }
 
     }
@@ -117,9 +140,7 @@ export class Game {
                 if (this.currentPlayerOb.revive) {
                     statsUpdate.reviveChange()  //removing revive 
                     this.hpValue = this.maxHp
-                    this.warnMessage.innerHTML = `Player ${this.currentPlayerIndex + 1} has revived!`
-                    this.warnEl.classList.add("active")
-                    this.warnBg.classList.add("active")
+                    this.displayWarn(`Player ${this.currentPlayerIndex + 1} has revived!`)
                     return this.hpControl()
 
                 } else {
@@ -133,9 +154,7 @@ export class Game {
                     this.finishScreen.classList.add("active")
                     //warn if one player is dead
                 } else {
-                    this.warnMessage.innerHTML = `Player ${this.currentPlayerIndex + 1} is dead `
-                    this.warnEl.classList.add("active")
-                    this.warnBg.classList.add("active")
+                    this.displayWarn(`Player ${this.currentPlayerIndex + 1} is dead `)
                 }
             }
         }
@@ -188,8 +207,7 @@ export class Game {
     startTurn() {
         if (this.turnFlag) {
             this.flagChange()
-            this.warnBg.classList.add("active")
-            this.warnWait.classList.add('active')
+            this.loadScreenToggle()
 
         } else return
 
@@ -216,8 +234,7 @@ export class Game {
         //next turn
         setTimeout(() => {
             this.nextTurn()
-            this.warnBg.classList.remove("active")
-            this.warnWait.classList.remove('active')
+            this.loadScreenToggle()
         }, this.dice.rollTime)
 
     }
@@ -232,9 +249,7 @@ export class Game {
         document.querySelector('.game--greeting-await').textContent = `An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You!`
 
         if (this.playersList.length > 1) {
-            this.warnMessage.textContent = `Player nr ${this.currentPlayerIndex + 1} starts the game!`
-            this.warnEl.classList.add("active")
-            this.warnBg.classList.add("active")
+            this.displayWarn(`Player nr ${this.currentPlayerIndex + 1} starts the game!`)
         }
 
         greetingsMsgEl.classList.add("active")
@@ -246,7 +261,7 @@ export class Game {
 
         document.querySelector('.dice-btn').addEventListener('click', () => this.startTurn())
         this.potionEl.forEach(el => el.addEventListener('click', (e) => this.potionHeal(e)))
-        document.querySelector('.skip-turn__btn').addEventListener('click', () => this.skipTurn())
+        document.querySelector('.rest-turn__btn').addEventListener('click', () => this.restTurn())
 
     }
 }
