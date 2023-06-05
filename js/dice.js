@@ -1,4 +1,5 @@
-import "../public/sounds/roll-effect.mp3"
+
+import { Sounds } from "./sounds"
 export class Dice {
     constructor(maxValue) {
         this.diceEl = document.querySelector(".dice")
@@ -7,12 +8,8 @@ export class Dice {
         this.rollTime = 1500
         this.diceMaxValue = maxValue
 
-    }
+        this.rollSound = new Sounds()
 
-    rollSound() {
-        const rollSound = new Audio("./sounds/roll-effect.mp3")
-        rollSound.play()
-        rollSound.volume = 0.2
     }
 
     reset(value) {
@@ -22,9 +19,9 @@ export class Dice {
     }
 
     rollDice = () => {
-        this.rollSound()
+        this.rollSound.rollSound()
         const diceValue = Math.floor(Math.random() * this.diceMaxValue + 1)
-        this.diceValue = 2
+        this.diceValue = diceValue
         this.diceAnimation(diceValue)
 
     }
