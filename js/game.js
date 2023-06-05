@@ -9,6 +9,7 @@ export class Game {
 
         //Players
         this.playersList = [...playersList]
+        this.playersEl = document.querySelectorAll('.player')
         this.currentPlayerIndex = firstPlayer
         this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
         this.maxHp = parseInt(lives)
@@ -19,15 +20,16 @@ export class Game {
         //potions
         this.potionEl = document.querySelectorAll('.player-stats__potion')
 
-        //alert
+        //alert/informations
         this.warnEl = document.querySelector(".game__warning")
         this.warnBg = document.querySelector(".game__popup-bg")
         this.warnWait = document.querySelector('.game__popup-img')
         this.warnMessage = document.querySelector(".game__warning-message")
 
-        //Win/loose Screen
-        this.finishScreen = document.querySelector(".game__msg-board")
-        this.finishMessage = document.querySelector(".game__msg-board-message ")
+        //popup - win/loose or duel
+        this.popupEl = document.querySelector('.game__warning--popup')
+        this.popupMsgEl = document.querySelector(".game__warning--popup-message")
+
 
         //dice
         this.dice = new Dice(6)
@@ -37,10 +39,6 @@ export class Game {
 
     }
 
-    flagChange() {
-        this.turnFlag = !this.turnFlag
-        setTimeout(() => { this.turnFlag = !this.turnFlag }, this.dice.rollTime)
-    }
 
     displayWarn(message) {
         this.warnMessage.innerHTML = message
@@ -48,41 +46,55 @@ export class Game {
         this.warnBg.classList.add("active")
     }
 
-    loadScreenToggle() {
-        this.warnBg.classList.toggle("active")
-        this.warnWait.classList.toggle('active')
+    loadScreenOn() {
+        this.warnBg.classList.add("active")
+        this.warnWait.classList.add('active')
+    }
+    loadScreenOff() {
+        this.warnBg.classList.remove("active")
+        this.warnWait.classList.remove('active')
     }
 
+    gameEndPopup(message) {
+        this.popupEl.classList.add('active')
+        this.warnBg.classList.add("active")
+        this.popupMsgEl.classList.add('endingBoard')
+        this.popupMsgEl.textContent = message
+
+    }
 
     playerMove() {
-        const currentPlayerEl = document.querySelector(`[player-number="${this.currentPlayerIndex}"]`)
         this.currentPlayerOb.position += this.moves
         if (this.currentPlayerOb.position >= this.mapEl.length - 1) {
             this.currentPlayerOb.position = this.mapEl.length - 1
-            this.mapEl[this.mapEl.length - 1].appendChild(currentPlayerEl)
-        } else { this.mapEl[this.currentPlayerOb.position].appendChild(currentPlayerEl) }
+            this.mapEl[this.mapEl.length - 1].appendChild(this.playersEl[this.currentPlayerIndex])
+        } else { this.mapEl[this.currentPlayerOb.position].appendChild(this.playersEl[this.currentPlayerIndex]) }
 
     }
 
     restTurn() {
-        if (this.turnFlag) {
-            this.flagChange()
-            this.loadScreenToggle()
-        } else return
+        this.loadScreenOn()
 
         //delays to execute functions for loading effect
         setTimeout(() => {
             const events = new Events(this.currentPlayerOb, "rest")
             this.hpValue = events.hpValue
             this.hpControl()
+            //check if you die and everyone else is dead -- Add this after every hpControl
+            if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
+                return this.gameEndPopup(`Everyone is Dead! YOU LOOSE!`)
+            }
+
+            setTimeout(() => {
+                this.nextTurn()
+                this.loadScreenOff()
+            }, this.dice.rollTime / 2)
+
         }, this.dice.rollTime / 2)
 
 
 
-        setTimeout(() => {
-            this.nextTurn()
-            this.loadScreenToggle()
-        }, this.dice.rollTime)
+
 
     }
 
@@ -144,18 +156,14 @@ export class Game {
                     return this.hpControl()
 
                 } else {
-                    const currentPlayerEl = document.querySelector(`[player-number="${this.currentPlayerIndex}"]`)
-                    currentPlayerEl.remove()
+                    this.playersEl[this.currentPlayerIndex].remove()
                     this.playersList.splice(this.currentPlayerIndex, 1, "")
+
                 }
-                //check if everyone is dead 
-                if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
-                    this.finishMessage.textContent = `Everyone is Dead! YOU LOOSE!`
-                    this.finishScreen.classList.add("active")
-                    //warn if one player is dead
-                } else {
+                //check if someone is alive- if not return go to next condutional statemenst (in startTurn()) that will display endgame message
+                if (this.playersList.filter(player => player === "").length < this.playersList.length) {
                     this.displayWarn(`Player ${this.currentPlayerIndex + 1} is dead `)
-                }
+                } else return
             }
         }
     }
@@ -172,20 +180,71 @@ export class Game {
             this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
         }
         if (this.currentPlayerOb === "") {
-
-            //check if everyone is dead -
-            if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
-                this.finishMessage.textContent = `Everyone is Dead! YOU LOOSE!`
-                this.finishScreen.classList.add("active")
-
-            } else { this.nextTurn() }
-
-
+            this.nextTurn()
         }
+    }
+
+    duelEvents(e) {
+        setTimeout(() => {
+            this.popupEl.classList.remove('active')
+            if (e.target.getAttribute('player-number')) {
+                console.log()
+                const playerIndex = this.currentPlayerIndex
+                const duel = new Events(this.currentPlayerOb, "duel", e.target.getAttribute('player-number'))
+                this.hpValue = duel.hpValue
+                this.currentPlayerIndex = parseInt(duel.defeatedPlayer)
+                this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
+                this.hpControl()
+
+                this.currentPlayerIndex = playerIndex
+                this.currentPlayerOb = this.playersList[this.currentPlayerIndex]
+
+            } else {
+                this.randomEvents()
+                this.hpControl()
+            }
+
+
+            setTimeout(() => {
+                this.nextTurn()
+                this.loadScreenOff()
+            }, this.dice.rollTime / 2)
+        }, this.dice.rollTime / 2)
+    }
+
+    encounterPlayer() {
+        const playersOnBlock = [...this.mapEl[this.currentPlayerOb.position].querySelectorAll(`div`)]
+        const otherPlayersEl = playersOnBlock.splice(0, playersOnBlock.length - 1)
+        console.log(otherPlayersEl[0].getAttribute('player-number'))
+        this.popupEl.classList.add('active')
+        this.popupMsgEl.textContent = `You met other ${playersOnBlock > 1 ? "travelers!" : "traveler!"} do you want to attack him or go too location?`
+        const btnPanel = document.createElement('div')
+        const duelBtns = []
+        btnPanel.setAttribute('class', ' game__warning--popup-btnPanel')
+        otherPlayersEl.forEach(player => {
+            const playerKey = player.getAttribute('player-number')
+            const btn = document.createElement("button")
+            btn.setAttribute("player-number", playerKey)
+            btn.setAttribute('class', ' game__warning--popup-btn popup--duelBtn')
+            btn.textContent = `Attack player ${parseInt(playerKey) + 1}`
+            duelBtns.push(btn)
+            btnPanel.appendChild(btn)
+        })
+        const eventBtn = document.createElement("button")
+        eventBtn.textContent = 'Go to location'
+        eventBtn.setAttribute('class', "game__warning--popup-btn popup--eventBtn")
+        btnPanel.appendChild(eventBtn)
+        this.popupMsgEl.appendChild(btnPanel)
+
+        duelBtns.forEach(btn => btn.addEventListener('click', (e) => this.duelEvents(e)))
+
+        //when you click on 'go to location' btn
+        eventBtn.addEventListener('click', (e) => this.duelEvents(e))
     }
 
     randomEvents = () => {
         const currentArea = this.mapEl[this.currentPlayerOb.position].getAttribute('area')
+
         if (currentArea === "win" || currentArea === "start") return
 
         const events = new Events(this.currentPlayerOb, currentArea)
@@ -205,11 +264,7 @@ export class Game {
     }
 
     startTurn() {
-        if (this.turnFlag) {
-            this.flagChange()
-            this.loadScreenToggle()
-
-        } else return
+        this.loadScreenOn()
 
         //dice roll
         this.dice.rollDice()
@@ -219,41 +274,52 @@ export class Game {
         setTimeout(() => {
             //player move
             this.playerMove()
-
+            //check if player is on last block
             if (this.currentPlayerOb.position >= this.mapEl.length - 1) {
-                this.finishMessage.textContent = `PLAYER ${this.currentPlayerIndex + 1} WINS! `
-                this.finishScreen.classList.add("active")
+                return this.gameEndPopup(`PLAYER ${this.currentPlayerIndex + 1} WINS!`)
+            }
+
+            if ([...this.mapEl[this.currentPlayerOb.position].childNodes].length > 2) {
+                return this.encounterPlayer()
             }
 
             this.randomEvents()
-
             this.hpControl()
-            console.log(this.currentPlayerOb)
+            //check if everyone is dead
+            if (this.playersList.filter(player => player === "").length >= this.playersList.length) {
+                return this.gameEndPopup(`Everyone is Dead! YOU LOOSE!`)
+            }
+
+            //next turn
+            setTimeout(() => {
+
+                this.nextTurn()
+                this.loadScreenOff()
+            }, this.dice.rollTime / 2)
+
         }, this.dice.rollTime / 2)
 
-        //next turn
-        setTimeout(() => {
-            this.nextTurn()
-            this.loadScreenToggle()
-        }, this.dice.rollTime)
+
 
     }
 
 
-
     newGame() {
-        const greetingEl = document.querySelector('.game--greeting')
-        const greetingBtn = document.querySelector('.game--greeting.fa-xmark')
-        const greetingsMsgEl = document.querySelector(".game--greeting")
-        document.querySelector('.game--greeting-title').textContent = `Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}`
-        document.querySelector('.game--greeting-await').textContent = `An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You!`
+        const popupBtn = document.querySelector('.game__warning--popup-btn')
+        document.querySelector('.game__warning--popup-title').textContent = `Greetings ${this.playersList.length > 1 ? "travelers!" : "traveler!"}`
+        document.querySelector('.game__warning--popup-await').textContent = `An amazing jorney ${this.playersList.length > 1 ? "awaits" : "await"} You!`
 
         if (this.playersList.length > 1) {
             this.displayWarn(`Player nr ${this.currentPlayerIndex + 1} starts the game!`)
         }
 
-        greetingsMsgEl.classList.add("active")
-        greetingBtn.addEventListener('click', () => greetingEl.classList.remove('active'))
+        this.warnBg.classList.add("active")
+        this.popupEl.classList.add("active")
+        popupBtn.addEventListener('click', () => {
+            this.popupEl.classList.remove('active')
+            this.warnBg.classList.remove('active')
+            popupBtn.remove()
+        })
     }
 
     init() {

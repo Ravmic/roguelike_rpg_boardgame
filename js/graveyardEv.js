@@ -12,7 +12,6 @@ export class Graveyard {
         this.randomEv = ""
         this.commentType = ""
         this.comment = ""
-        console.log(this.luck)
         this.randomizeEvent()
     }
 

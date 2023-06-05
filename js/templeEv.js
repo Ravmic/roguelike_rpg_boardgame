@@ -12,10 +12,7 @@ export class Temple {
         this.randomEv = ""
         this.commentType = ""
         this.comment = ""
-        console.log(this.luck)
         this.randomizeEvent()
-
-        console.log(this.currentPlayer)
     }
 
     randomizeEvent() {

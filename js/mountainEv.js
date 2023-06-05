@@ -13,7 +13,6 @@ export class Mountain {
         this.randomEv = ""
         this.commentType = ""
         this.comment = ""
-        console.log(this.luck)
         this.randomizeEvent()
     }
 

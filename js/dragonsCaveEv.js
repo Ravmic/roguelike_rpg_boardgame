@@ -12,10 +12,8 @@ export class DragonsCave {
         this.randomEv = ""
         this.commentType = ""
         this.comment = ""
-        console.log(this.luck)
         this.randomizeEvent()
 
-        console.log(this.luck)
     }
 
     randomizeEvent() {

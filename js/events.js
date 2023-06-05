@@ -7,9 +7,11 @@ import { DragonsCave } from "./dragonsCaveEv"
 import { Temple } from "./templeEv"
 
 export class Events {
-    constructor(player, blockValue) {
+    constructor(player, blockValue, duelPlayerIndex) {
         this.currentPlayer = player
         this.currentLandscape = blockValue
+        this.duelPlayerIndex = duelPlayerIndex
+
         this.eventEl = document.querySelector(".screen__text")
         this.commentEl = document.querySelector(".screen__comment")
         this.hpValue = null
@@ -40,8 +42,9 @@ export class Events {
             landscapeEv = new Temple(eventLuck, this.currentPlayer)
         } else if (this.currentLandscape === "rest") {
             landscapeEv = this.rest(eventLuck)
+        } else if (this.currentLandscape === "duel") {
+            landscapeEv = this.duel(eventLuck, this.duelPlayerIndex)
         }
-
 
 
         this.hpValue = landscapeEv.hp
@@ -50,6 +53,8 @@ export class Events {
         this.eventComment = landscapeEv.comment
         this.reviveValue = landscapeEv.revive
         this.potionsValue = landscapeEv.potionsValue
+
+        this.defeatedPlayer = landscapeEv.defPlayer
 
         this.showEvent()
     }
@@ -80,7 +85,6 @@ export class Events {
 
 
     rest(luck) {
-        console.log(luck)
         const restEv = {
             hp: 0,
             randomEv: "",
@@ -91,8 +95,6 @@ export class Events {
             restEv.hp = 1
             restEv.commentType = "good"
             restEv.randomEv = "The night was quiet, and I slept pretty well."
-
-
         }  //neutral
         else if (luck >= 4 && luck < 8) {
             restEv.hp = 0
@@ -107,6 +109,38 @@ export class Events {
 
         return restEv
     }
+
+
+    duel(luck, oponentIndex) {
+
+        console.log(this.currentPlayer)
+        const duelEv = {
+            hp: 0,
+            randomEv: "",
+            commentType: "",
+            comment: "",
+            defPlayer: "",
+        }
+
+        if (luck < 5) {
+            duelEv.hp = -2
+            duelEv.commentType = "vgood"
+            duelEv.randomEv = "Your opponent didn't stand a chance against you"
+            duelEv.comment = `You just win fight against other player`
+            duelEv.defPlayer = oponentIndex
+
+        }
+        else if ((luck >= 5)) {
+            duelEv.hp = -3
+            duelEv.commentType = "vbad"
+            duelEv.randomEv = "your opponent turned out to be stronger and smarter."
+            duelEv.comment = `You got defeated`
+            duelEv.defPlayer = this.currentPlayer.nr
+        }
+
+        return duelEv
+    }
+
 
 
 }

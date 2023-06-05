@@ -4,7 +4,6 @@ export class Dice {
         this.diceEl = document.querySelector(".dice")
         this.diceBtn = document.querySelector(".dice-btn")
         this.diceValue = null
-        this.rotation = 0
         this.rollTime = 1500
         this.diceMaxValue = maxValue
 
@@ -18,23 +17,21 @@ export class Dice {
 
     reset(value) {
         this.diceBtn.classList.remove(`active`)
+        this.diceEl.classList.remove(`active`)
         this.diceEl.classList.remove(`roll${value}`)
     }
 
     rollDice = () => {
         this.rollSound()
         const diceValue = Math.floor(Math.random() * this.diceMaxValue + 1)
-
-        console.log(diceValue)
-        this.diceValue = diceValue
+        this.diceValue = 2
         this.diceAnimation(diceValue)
 
     }
 
     diceAnimation(value) {
-
-        this.diceEl.style.transform = `rotate(${this.rotation += 180}deg)`
         this.diceEl.classList.add(`roll${value}`)
+        this.diceEl.classList.add(`active`)
         this.diceBtn.classList.add(`active`)
 
         setTimeout(() => { this.reset(value) }, this.rollTime)

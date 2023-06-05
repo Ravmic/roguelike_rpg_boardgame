@@ -73,6 +73,17 @@
         opacity: 0;
     }
 
+    .dice.active {
+        animation: rotate 0.4s forwards;
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(180deg);
+            }
+
+        }
+    }
+
     .dice.roll2 {
 
 

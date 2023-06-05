@@ -27,6 +27,7 @@ export class Gameboard {
     }
 
 
+
     mapGenerator() {
         //generate rows
         for (let i = 0; this.rowNumbers > i; i++) {

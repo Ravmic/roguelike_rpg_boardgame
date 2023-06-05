@@ -67,6 +67,7 @@ export class GameStart {
             //generating players
             const newPlayersList = new Players(playersNr, lives).playersArray
 
+            //draw first player
             const firstPlayer = Math.floor(Math.random() * playersNr)
 
             //initialize main game module

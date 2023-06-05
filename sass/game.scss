@@ -5,7 +5,7 @@
     flex-direction: column;
     background-color: #C9E3CA;
     overflow: hidden;
-
+    user-select: none;
 
 
     .game__warning {
@@ -26,39 +26,86 @@
             font-size: 3.5rem;
             color: #F5DEB3;
             user-select: none;
-            padding: 50px 30px;
+            padding: 50px 80px;
 
         }
 
-        .fa-xmark {
+        &-btn {
             position: absolute;
-            right: 30px;
-            top: 20px;
+            right: 5%;
+            top: 20%;
             font-size: 3.5rem;
             color: #F5DEB3;
             cursor: pointer;
         }
 
-        .game--greeting {
-            font-size: 3.2rem;
-            padding: 20px 40px;
 
-            &-title {
-                display: block;
-                width: 100%;
-                text-align: center;
-                margin: 10px 0;
-                font-size: 3.5rem;
-                color: #ffdd1b;
-            }
+    }
+
+
+    .game__warning--popup {
+        font-size: 3.2rem;
+        padding: 40px 0;
+
+
+        &-title {
+            padding: 35px 20px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 3.5rem;
+            color: #ffdd1b;
+        }
+
+        &-message {
+            width: 100%;
+            font-size: 3.2rem;
+            padding: 0 60px;
 
             span {
                 padding: 0;
                 color: #ff3d1b;
             }
+
+            .game__warning--popup-btnPanel {
+                padding: 20px 0;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+
+
+
+                .game__warning--popup-btn {
+                    display: block;
+                    padding: 10px 20px;
+                    margin-top: 10px;
+                    font-size: 2rem;
+                    background: transparent;
+                    border: 2px solid #F5DEB3;
+                    color: #F5DEB3;
+                    font-family: 'Eagle Lake', cursive;
+                    cursor: pointer;
+                }
+            }
+
         }
+
+
+
+        .game__warning-btn {
+            padding: 0;
+            right: 7%;
+            top: 7%;
+        }
+
+
     }
 
+    .game--popup.endingBoard {
+        padding: 100px 100px;
+        font-size: 4.5rem;
+        text-align: center;
+    }
 
     // apear when warning show up
     &__popup-bg {
@@ -105,30 +152,4 @@
     }
 
 
-    .game__msg-board {
-        width: 100%;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: -100%;
-        display: flex;
-        z-index: 11;
-        transform: translateX(-50%);
-        background-color: #935F2C;
-
-
-        .game__msg-board-message {
-            margin: auto;
-            padding: 100px 150px;
-            font-size: 4.5rem;
-            color: white;
-            user-select: none;
-
-            border: 5px solid white;
-        }
-    }
-
-    .game__msg-board.active {
-        transform: translateX(100%);
-    }
 }
