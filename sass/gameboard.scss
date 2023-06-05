@@ -1,12 +1,12 @@
 .game__gameboard-wrapper {
-    min-height: 500px;
     flex-grow: 1;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #C9E3CA;
 
     .gameboard {
-        width: 1050px;
+        margin: 0 30px;
         padding: 20px 0;
         display: flex;
         flex-direction: column;
@@ -16,14 +16,48 @@
         border: 2px solid #4f6e4f;
         background-color: rgb(250, 250, 250);
 
+        @media (max-width:1280px) {
+            // width: 80%;
+            padding: 10px 0;
+        }
+
+        @media (max-width:820px) and (orientation: portrait) {
+            margin: 0 10px;
+        }
+
+        @media (max-width:420px) {
+            padding: 0;
+            margin-bottom: 60px;
+        }
+
+        @media (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+            padding: 2px;
+            margin: 0;
+        }
+
         &__row {
+            padding: 0 40px;
             display: flex;
             justify-content: center;
             align-items: center;
             align-content: center;
             flex-wrap: wrap;
-            width: 1050px;
+            // width: 1050px;
             margin: 0 auto;
+
+            @media (max-width:820px) and (orientation: portrait) {
+                padding: 5px;
+                width: 100%;
+            }
+
+            @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+                padding: 0;
+            }
+
+            @media (max-width:420px) {
+                padding: 0;
+                margin: 0;
+            }
 
             &--block {
                 display: flex;
@@ -34,6 +68,37 @@
                 height: $board-block-size;
                 border: 2px solid #4f6e4f;
 
+                @media (max-width:1280px) {
+                    width: calc($board-block-size - 15px);
+                    height: calc($board-block-size - 15px);
+                }
+
+                @media (max-width:1024px) {
+                    width: calc($board-block-size - 30px);
+                    height: calc($board-block-size - 30px);
+                }
+
+                @media (max-width:420px),
+                (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+                    width: calc($board-block-size - 50px);
+                    height: calc($board-block-size - 50px);
+                }
+
+                @media (max-width:420px) {
+                    margin: 5px 1px;
+                }
+
+                @media (max-width:360px) {
+                    margin: 5px 1px;
+                    width: calc($board-block-size - 53px);
+                    height: calc($board-block-size - 53px);
+                }
+
+                @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+                    margin: 1px 3px;
+
+                }
+
                 p {
                     position: absolute;
                     top: 50%;
@@ -42,6 +107,16 @@
                     font-size: 2rem;
                     opacity: 0.2;
                     user-select: none;
+
+                    @media (max-width:915px) {
+                        font-size: 1.6rem;
+                    }
+
+                    @media (max-width:420px),
+                    (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+                        font-size: 1.2rem;
+                    }
+
                 }
 
                 .player {
@@ -68,6 +143,20 @@
                         z-index: -1;
                         opacity: 0;
                         transition: 0.2s 0.2s;
+
+                        @media (max-width:820px) {
+                            opacity: 1;
+                            font-size: 2rem;
+                        }
+
+                        @media (max-width:420px) {
+                            font-size: 1.3rem;
+                        }
+
+                        @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+                            font-size: 1.5rem;
+                            opacity: 1;
+                        }
                     }
                 }
 
@@ -75,6 +164,9 @@
                     transform: scale(1.5);
                     z-index: 10;
 
+                    @media (max-width:915px) {
+                        transform: scale(2);
+                    }
 
                     p {
                         opacity: 1;

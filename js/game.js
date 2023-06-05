@@ -38,7 +38,9 @@ export class Game {
         this.init()
 
     }
+    mobileWarn() {
 
+    }
 
     displayWarn(message) {
         this.warnMessage.innerHTML = message
@@ -299,10 +301,7 @@ export class Game {
 
         }, this.dice.rollTime / 2)
 
-
-
     }
-
 
     newGame() {
         const popupBtn = document.querySelector('.game__warning--popup-btn')
@@ -322,12 +321,15 @@ export class Game {
         })
     }
 
+
+
     init() {
         this.newGame()
 
         document.querySelector('.dice-btn').addEventListener('click', () => this.startTurn())
         this.potionEl.forEach(el => el.addEventListener('click', (e) => this.potionHeal(e)))
         document.querySelector('.rest-turn__btn').addEventListener('click', () => this.restTurn())
+
 
     }
 }
