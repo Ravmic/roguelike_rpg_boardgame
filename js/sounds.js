@@ -8,7 +8,7 @@ export class Sounds {
         this.clickCheck = false
         this.handlePosition = 0
         this.mainVolume = 0.2
-
+        console.log(this.controlBarEl.offsetLeft)
         this.diceRoll = new Audio('./sounds/roll-effect.mp3')
 
 
@@ -37,7 +37,6 @@ export class Sounds {
     //calculating borders where slider will work
     calcOffset(clientX) {
         const position = clientX - this.controlBarEl.offsetLeft
-
         if (position >= this.controlBarEl.offsetWidth) {
             this.handlePosition = this.controlBarEl.offsetWidth
         } else if (position <= 0) {
@@ -49,9 +48,9 @@ export class Sounds {
     mouseMove(clientX) {
         this.calcOffset(clientX)
         const percent = this.handlePosition / this.controlBarEl.offsetWidth
+
         this.controlBarHandle.style.left = `${percent * 100}%`
         this.mainVolume = percent
-
         this.audioEl.volume = this.mainVolume
     }
     //Initialize playing song and listening to volume slider

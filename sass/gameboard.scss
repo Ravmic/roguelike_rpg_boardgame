@@ -80,19 +80,14 @@
 
                 @media (max-width:420px),
                 (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                    width: calc($board-block-size - 50px);
-                    height: calc($board-block-size - 50px);
+                    width: calc($board-block-size - 53px);
+                    height: calc($board-block-size - 53px);
                 }
 
                 @media (max-width:420px) {
                     margin: 5px 1px;
                 }
 
-                @media (max-width:360px) {
-                    margin: 5px 1px;
-                    width: calc($board-block-size - 53px);
-                    height: calc($board-block-size - 53px);
-                }
 
                 @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
                     margin: 1px 3px;
