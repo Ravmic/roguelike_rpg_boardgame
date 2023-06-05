@@ -185,10 +185,11 @@ export class Game {
     }
 
     duelEvents(e) {
+        this.popupEl.classList.remove('active')
         setTimeout(() => {
-            this.popupEl.classList.remove('active')
+
             if (e.target.getAttribute('player-number')) {
-                console.log()
+
                 const playerIndex = this.currentPlayerIndex
                 const duel = new Events(this.currentPlayerOb, "duel", e.target.getAttribute('player-number'))
                 this.hpValue = duel.hpValue
@@ -215,7 +216,6 @@ export class Game {
     encounterPlayer() {
         const playersOnBlock = [...this.mapEl[this.currentPlayerOb.position].querySelectorAll(`div`)]
         const otherPlayersEl = playersOnBlock.splice(0, playersOnBlock.length - 1)
-        console.log(otherPlayersEl[0].getAttribute('player-number'))
         this.popupEl.classList.add('active')
         this.popupMsgEl.textContent = `You met other ${playersOnBlock > 1 ? "travelers!" : "traveler!"} do you want to attack him or go too location?`
         const btnPanel = document.createElement('div')

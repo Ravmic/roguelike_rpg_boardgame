@@ -112,8 +112,6 @@ export class Events {
 
 
     duel(luck, oponentIndex) {
-
-        console.log(this.currentPlayer)
         const duelEv = {
             hp: 0,
             randomEv: "",
@@ -133,7 +131,7 @@ export class Events {
         else if ((luck >= 5)) {
             duelEv.hp = -3
             duelEv.commentType = "vbad"
-            duelEv.randomEv = "your opponent turned out to be stronger and smarter."
+            duelEv.randomEv = "Your opponent didn't get caught off guard and turned out to be stronger."
             duelEv.comment = `You got defeated`
             duelEv.defPlayer = this.currentPlayer.nr
         }
