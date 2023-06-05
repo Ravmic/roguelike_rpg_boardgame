@@ -2,8 +2,8 @@ import "../public/sounds/roll-effect.mp3"
 
 export class Sounds {
     constructor() {
-        this.audioEl = document.querySelector(".game__music-mp3")
-        this.controlBarEl = document.querySelector(".game__music")
+        this.audioEl = document.querySelector(".hud__music-mp3")
+        this.controlBarEl = document.querySelector(".hud__music")
         this.controlBarHandle = document.querySelector(".volume-control__handle")
         this.clickCheck = false
         this.handlePosition = 0
@@ -65,8 +65,16 @@ export class Sounds {
                 this.mouseMove(e.clientX)
             }
         }
-
         )
+        this.controlBarHandle.addEventListener('touchstart', () => this.isClicked())
+        window.addEventListener('touchend', () => this.isUnclicked())
+        window.addEventListener('touchmove', (e) => {
+            if (this.clickCheck) {
+                this.mouseMove(e.touches[0].clientX)
+            }
+        }
+        )
+
     }
 }
 

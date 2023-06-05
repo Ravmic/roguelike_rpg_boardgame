@@ -1,12 +1,17 @@
 {
   "name": "roguelike-rpg-boardgame",
   "version": "1.0.0",
+  "repository": {
+    "url": "git+https://github.com/Ravmic/roguelike_rpg_boardgame.git"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config ./config/webpack.config.js",
     "prod": "webpack --config ./config/webpack.config.prod.js",
-    "dev": "webpack --config ./config/webpack.config.js"
+    "dev": "webpack --config ./config/webpack.config.js",
+    "predeploy": "npm run prod",
+    "deploy": "gh-pages -d build"
   },
   "author": "Rafał Michalski",
   "license": "ISC",
@@ -19,6 +24,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
+    "gh-pages": "^5.0.0",
     "html-webpack-plugin": "^5.5.1",
     "mini-css-extract-plugin": "^2.7.5",
     "sass": "^1.62.0",

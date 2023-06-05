@@ -7,4 +7,8 @@
 :root {
     font-size: 10px;
     font-family: 'Eagle Lake', cursive;
+
+    @media (max-width: 1300px) {
+        font-size: 9.8px;
+    }
 }
