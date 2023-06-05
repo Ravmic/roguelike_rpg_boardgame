@@ -1,3 +1,5 @@
+import "../public/sounds/roll-effect.mp3"
+
 export class Sounds {
     constructor() {
         this.audioEl = document.querySelector(".game__music-mp3")
@@ -5,10 +7,26 @@ export class Sounds {
         this.controlBarHandle = document.querySelector(".volume-control__handle")
         this.clickCheck = false
         this.handlePosition = 0
-        this.mainVolume = null
+        this.mainVolume = 0.2
+
+        this.diceRoll = new Audio('./sounds/roll-effect.mp3')
+
 
         this.init()
     }
+    //roll sound
+    rollSound() {
+        this.diceRoll.play()
+        this.diceRoll.volume = this.mainVolume / 3
+    }
+
+    //play song 
+    playSong() {
+        this.audioEl.play()
+        this.audioEl.volume = this.mainVolume
+    }
+
+
     //click checker
     isClicked() {
         this.clickCheck = true
@@ -32,12 +50,13 @@ export class Sounds {
         this.calcOffset(clientX)
         const percent = this.handlePosition / this.controlBarEl.offsetWidth
         this.controlBarHandle.style.left = `${percent * 100}%`
-        this.audioEl.volume = percent
+        this.mainVolume = percent
+
+        this.audioEl.volume = this.mainVolume
     }
     //Initialize playing song and listening to volume slider
     init() {
-        this.audioEl.play()
-        this.audioEl.volume = 0.2
+
 
         this.controlBarHandle.addEventListener('mousedown', () => this.isClicked())
         window.addEventListener('mouseup', () => this.isUnclicked())

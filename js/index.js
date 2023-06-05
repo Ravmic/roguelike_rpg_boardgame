@@ -60,6 +60,7 @@ export class GameStart {
 
             //play music
             const sounds = new Sounds()
+            sounds.playSong()
 
             //generating map
             new Gameboard(mapSize)
