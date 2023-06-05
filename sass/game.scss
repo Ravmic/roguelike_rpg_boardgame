@@ -90,22 +90,21 @@
 
         }
 
-
-
         .game__warning-btn {
             padding: 0;
             right: 7%;
             top: 7%;
         }
 
+        .game__warning--popup-message.endingBoard {
+            padding: 90px 80px;
+            font-size: 4.5rem;
+            text-align: center;
 
+        }
     }
 
-    .game--popup.endingBoard {
-        padding: 100px 100px;
-        font-size: 4.5rem;
-        text-align: center;
-    }
+
 
     // apear when warning show up
     &__popup-bg {
