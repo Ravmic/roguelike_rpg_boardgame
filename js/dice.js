@@ -24,7 +24,7 @@ export class Dice {
     rollDice = () => {
         this.rollSound()
         const diceValue = Math.floor(Math.random() * this.diceMaxValue + 1)
-        this.diceValue = diceValue
+        this.diceValue = 2
         this.diceAnimation(diceValue)
 
     }

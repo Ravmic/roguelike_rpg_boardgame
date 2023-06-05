@@ -217,7 +217,7 @@ export class Game {
         const playersOnBlock = [...this.mapEl[this.currentPlayerOb.position].querySelectorAll(`div`)]
         const otherPlayersEl = playersOnBlock.splice(0, playersOnBlock.length - 1)
         this.popupEl.classList.add('active')
-        this.popupMsgEl.textContent = `You met other ${playersOnBlock > 1 ? "travelers!" : "traveler!"} do you want to attack him or go too location?`
+        this.popupMsgEl.textContent = `You met other ${otherPlayersEl.length > 1 ? "travelers!" : "traveler!"} do you want to attack ${otherPlayersEl.length > 1 ? "one of them" : "him"} or go to location?`
         const btnPanel = document.createElement('div')
         const duelBtns = []
         btnPanel.setAttribute('class', ' game__warning--popup-btnPanel')

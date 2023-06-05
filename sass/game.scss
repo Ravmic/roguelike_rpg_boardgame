@@ -59,8 +59,8 @@
 
         &-message {
             width: 100%;
-            font-size: 3.2rem;
-            padding: 0 60px;
+            font-size: 3rem;
+            padding: 0 50px;
 
             span {
                 padding: 0;
@@ -71,14 +71,16 @@
                 padding: 20px 0;
                 display: flex;
                 justify-content: space-evenly;
+                flex-wrap: wrap;
                 align-items: center;
 
 
 
                 .game__warning--popup-btn {
                     display: block;
+                    width: 30%;
                     padding: 10px 20px;
-                    margin-top: 10px;
+                    margin-top: 15px;
                     font-size: 2rem;
                     background: transparent;
                     border: 2px solid #F5DEB3;

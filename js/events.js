@@ -123,16 +123,16 @@ export class Events {
         if (luck < 5) {
             duelEv.hp = -2
             duelEv.commentType = "vgood"
-            duelEv.randomEv = "Your opponent didn't stand a chance against you"
-            duelEv.comment = `You just win fight against other player`
+            duelEv.randomEv = "Your opponent was surprised! he didn't stand a chance against you"
+            duelEv.comment = `You just win the fight against other player!`
             duelEv.defPlayer = oponentIndex
 
         }
         else if ((luck >= 5)) {
             duelEv.hp = -3
             duelEv.commentType = "vbad"
-            duelEv.randomEv = "Your opponent didn't get caught off guard and turned out to be stronger."
-            duelEv.comment = `You got defeated`
+            duelEv.randomEv = "Your opponent didn't get caught off guard! Turned out he was stronger."
+            duelEv.comment = `You have been defeated...`
             duelEv.defPlayer = this.currentPlayer.nr
         }
 
