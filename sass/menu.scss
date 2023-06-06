@@ -73,6 +73,7 @@
 
                 @media (max-width:420px) {
                     font-size: 1.2rem;
+
                 }
 
                 @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
@@ -107,6 +108,7 @@
                     }
 
                     @media (max-width:420px) {
+                        margin: 0 2.5px;
                         width: calc($menu-btn-size * 0.5);
                         height: calc($menu-btn-size * 0.5);
                         line-height: calc($menu-btn-size - 27px);
