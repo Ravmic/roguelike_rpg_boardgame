@@ -25,14 +25,16 @@
             margin: 0 10px;
         }
 
-        @media (max-width:420px) {
-            padding: 0;
-            margin-bottom: 70px;
+        @media (max-width:420px),
+        (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+            padding: 1px 2px;
+            margin: 0 0 85px 0;
+            border: 1px solid #4f6e4f;
         }
 
         @media (max-width:920px) and (max-height:500px) and (orientation:landscape) {
-            padding: 2px;
             margin: 0;
+
         }
 
         &__row {
@@ -54,14 +56,11 @@
                 padding: 0 5px;
             }
 
-            @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+            @media (max-width:420px),
+            (max-width:920px) and (max-height:500px) and (orientation:landscape) {
                 padding: 0;
             }
 
-            @media (max-width:420px) {
-                padding: 0;
-                margin: 0;
-            }
 
             &--block {
                 display: flex;
@@ -88,24 +87,18 @@
                     height: calc($board-block-size - 40px);
                 }
 
-                @media (max-width:420px),
-                (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+
+                @media (max-width:420px) {
+                    margin: 4px 0.5px;
                     width: calc($board-block-size - 53px);
                     height: calc($board-block-size - 53px);
                 }
 
-                @media (max-width:420px) {
-                    margin: 5px 1px;
-                }
-
-                @media (max-width:360px) {
-                    margin: 4px 0.5px;
-                    width: calc($board-block-size - 57px);
-                    height: calc($board-block-size - 57px);
-                }
 
                 @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
                     margin: 1px 3px;
+                    width: calc($board-block-size - 55px);
+                    height: calc($board-block-size - 55px);
 
                 }
 
@@ -123,8 +116,9 @@
                     }
 
                     @media (max-width:420px),
-                    (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                        font-size: 1.2rem;
+                    (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+                        font-size: 1rem;
+                        opacity: 0.15;
                     }
 
                 }
@@ -141,6 +135,11 @@
                     z-index: 1;
                     transition: 0.2s;
 
+                    @media (max-width:420px),
+                    (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+                        width: 75%;
+                        height: 75%;
+                    }
 
                     p {
                         position: absolute;
@@ -159,12 +158,10 @@
                             font-size: 2rem;
                         }
 
-                        @media (max-width:420px) {
-                            font-size: 1.3rem;
-                        }
 
-                        @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                            font-size: 1.5rem;
+                        @media (max-width:420px),
+                        (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+                            font-size: 1rem;
                             opacity: 1;
                         }
                     }

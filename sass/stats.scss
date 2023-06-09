@@ -28,15 +28,19 @@
                 flex-wrap: wrap;
                 flex-basis: 100%;
                 justify-content: center;
+                border-left: none;
+                border-right: none;
             }
 
             @media (max-width:1200px) and (orientation:landscape) {
                 flex-wrap: nowrap;
             }
 
+
             @media (max-width:420px),
-            (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+            (max-width:920px) and (max-height:500px) and (orientation:landscape) {
                 padding: 0 0 0 20px;
+                border-bottom: 2px solid #935F2C;
             }
 
 
@@ -54,8 +58,9 @@
                     font-size: 1.2rem;
                 }
 
-                @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                    font-size: 1rem;
+                @media (max-width:420px),
+                (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+                    font-size: 0.8rem;
                 }
 
                 .player-stats--flex {
@@ -76,8 +81,9 @@
                         font-size: 1.5rem;
                     }
 
-                    @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                        font-size: 1.2rem;
+                    @media(max-width:420px),
+                    (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+                        font-size: 1rem;
                     }
 
                     .fa-caret-up.active {
@@ -150,8 +156,9 @@
                             height: calc($lifebar-height - 3px);
                         }
 
-                        @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                            height: calc($lifebar-height - 7px);
+                        @media(max-width:420px),
+                        (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+                            height: calc($lifebar-height - 9px);
                         }
 
                         .player-stats__bar-fill {
@@ -184,9 +191,10 @@
 
                             }
 
-                            @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+                            @media(max-width:420px),
+                            (max-width:920px) and (max-height:500px) and (orientation:landscape) {
                                 font-size: 0.8rem;
-                                line-height: calc($lifebar-height - 7px);
+                                line-height: calc($lifebar-height - 9px);
                             }
                         }
                     }
@@ -205,9 +213,10 @@
                             height: 22px;
                         }
 
-                        @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                            width: 18px;
-                            height: 18px;
+                        @media(max-width:420px),
+                        (max-width:920px) and (max-height:500px) and (orientation:landscape) {
+                            width: 14px;
+                            height: 14px;
                         }
 
                     }

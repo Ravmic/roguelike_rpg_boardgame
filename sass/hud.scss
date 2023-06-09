@@ -4,16 +4,22 @@
     border-top: 3px solid #935F2C;
 
 
+    @media (max-width:420px),
+    (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+        border-top: 2px solid #935F2C;
+    }
+
     .hud {
         height: 20vh;
         display: flex;
 
         @media (max-width:420px) {
-            height: 30vh;
+            height: 27vh;
         }
 
-        @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-            height: 25vh;
+        @media (max-width:420px),
+        (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+            height: 20vh;
         }
 
         .current-player {
@@ -47,13 +53,13 @@
             }
 
             @media (max-width:420px) {
-                top: -30%;
+                top: -35%;
             }
 
-            @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
+            @media (max-width:920px) and (max-height:500px) and (orientation:landscape) {
                 top: -60%;
-                left: 12%;
-                font-size: 1.1rem;
+                left: 8%;
+                font-size: 0.7rem;
             }
         }
 
@@ -76,13 +82,17 @@
 
             @media (max-width:420px) {
                 top: 42%;
-                left: 2;
+                left: 50%;
+                transform: translate(-50%, -50%);
                 width: 96%;
                 height: 80%;
+                border: 2px solid #935F2C;
             }
 
             @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                width: 65%;
+                left: 1%;
+                width: 70%;
+                border: 1px solid #935F2C;
             }
 
             &__text {
@@ -98,8 +108,13 @@
                     font-size: 1.3rem;
                 }
 
-                @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                    font-size: 1.1rem;
+                @media(max-width:420px) {
+                    font-size: 0.9rem;
+                    padding: 7px;
+                }
+
+                @media(max-width:920px) and (max-height:420px) and (orientation:landscape) {
+                    font-size: 0.7rem;
                     padding: 7px;
                 }
 
@@ -122,9 +137,15 @@
                     font-size: 1.3rem;
                 }
 
+                @media(max-width:420px) {
+                    font-size: 0.9rem;
+                    padding: 7px;
+                }
+
                 @media (max-width:920px) and (max-height:420px) and (orientation:landscape) {
-                    font-size: 1.1rem;
+                    font-size: 0.7rem;
                     left: 7px;
+                    bottom: 4px;
                 }
 
             }
