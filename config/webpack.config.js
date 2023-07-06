@@ -40,7 +40,6 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: "nowa aplikacja",
             template: './index.html',
         })
 

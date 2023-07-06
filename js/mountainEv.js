@@ -1,4 +1,4 @@
-export class Mountain {
+class Mountain {
     constructor(luck, player) {
         this.currentPlayer = player
         this.luck = luck
@@ -66,3 +66,5 @@ export class Mountain {
 
     }
 }
+
+export default Mountain 

@@ -1,10 +1,10 @@
 import "../sass/style.scss"
-import { Players } from "./players"
-import { Game } from "./game"
-import { Gameboard } from "./gameboard"
-import { Sounds } from "./sounds"
+import Players from "./players"
+import Game from "./game"
+import Gameboard from "./gameboard"
+import Sounds from "./sounds"
 
-export class GameStart {
+class GameStart {
     constructor() {
         this.playersBtns = document.querySelectorAll(".menu__settings--players .menu__settings-btn")
         this.livesBtns = document.querySelectorAll(".menu__settings--lives .menu__settings-btn")

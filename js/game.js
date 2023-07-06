@@ -1,8 +1,8 @@
-import { Dice } from "./dice"
-import { StatsUpdate } from "./statsUpdate"
-import { Events } from "./events"
+import Dice from "./dice"
+import StatsUpdate from "./statsUpdate"
+import Events from "./events"
 
-export class Game {
+class Game {
     constructor(playersList, lives, firstPlayer) {
         //map
         this.mapEl = document.querySelectorAll('.gameboard__row--block')
@@ -334,3 +334,4 @@ export class Game {
     }
 }
 
+export default Game

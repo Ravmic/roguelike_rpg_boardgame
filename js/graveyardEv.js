@@ -1,4 +1,4 @@
-export class Graveyard {
+class Graveyard {
     constructor(luck, player) {
         this.currentPlayer = player
         this.luck = luck
@@ -58,3 +58,5 @@ export class Graveyard {
 
     }
 }
+
+export default Graveyard

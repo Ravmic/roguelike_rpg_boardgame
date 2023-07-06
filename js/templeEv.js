@@ -1,4 +1,4 @@
-export class Temple {
+class Temple {
     constructor(luck, player) {
         this.currentPlayer = player
         this.luck = luck
@@ -65,3 +65,5 @@ export class Temple {
 
     }
 }
+
+export default Temple

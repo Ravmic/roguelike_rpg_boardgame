@@ -1,4 +1,4 @@
-export class DragonsCave {
+class DragonsCave {
     constructor(luck, player) {
         this.currentPlayer = player
         this.luck = luck
@@ -53,3 +53,5 @@ export class DragonsCave {
 
     }
 }
+
+export default DragonsCave

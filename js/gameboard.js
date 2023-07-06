@@ -1,4 +1,4 @@
-export class Gameboard {
+class Gameboard {
     constructor(size) {
         this.gameboardEl = document.querySelector('.gameboard')
         this.mapSize = size
@@ -74,3 +74,5 @@ export class Gameboard {
 
     }
 }
+
+export default Gameboard

@@ -1,4 +1,4 @@
-export class StatsUpdate {
+class StatsUpdate {
     constructor(player = null) {
         this.currentPlayer = player
         this.healthBarFill = document.querySelector(`.player-stats__bar-fill.player${this.currentPlayer.nr}`)
@@ -72,3 +72,5 @@ export class StatsUpdate {
     }
 
 }
+
+export default StatsUpdate

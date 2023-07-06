@@ -1,6 +1,6 @@
 import "../public/sounds/roll-effect.mp3"
 
-export class Sounds {
+class Sounds {
     constructor() {
         this.audioEl = document.querySelector(".hud__music-mp3")
         this.controlBarEl = document.querySelector(".hud__music")
@@ -77,3 +77,4 @@ export class Sounds {
     }
 }
 
+export default Sounds

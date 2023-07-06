@@ -1,12 +1,12 @@
-import { Forest } from "./forestEv"
-import { Village } from "./villageEv"
-import { Swamp } from "./swampEv"
-import { Mountain } from "./mountainEv"
-import { Graveyard } from "./graveyardEv"
-import { DragonsCave } from "./dragonsCaveEv"
-import { Temple } from "./templeEv"
+import Forest from "./forestEv"
+import Village from "./villageEv"
+import Swamp from "./swampEv"
+import Mountain from "./mountainEv"
+import Graveyard from "./graveyardEv"
+import DragonsCave from "./dragonsCaveEv"
+import Temple from "./templeEv"
 
-export class Events {
+class Events {
     constructor(player, blockValue, duelPlayerIndex) {
         this.currentPlayer = player
         this.currentLandscape = blockValue
@@ -142,3 +142,5 @@ export class Events {
 
 
 }
+
+export default Events

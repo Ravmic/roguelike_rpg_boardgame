@@ -1,4 +1,4 @@
-export class Village {
+class Village {
     constructor(luck) {
 
         this.luck = luck
@@ -39,3 +39,5 @@ export class Village {
 
     }
 }
+
+export default Village

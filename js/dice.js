@@ -1,6 +1,5 @@
-
-import { Sounds } from "./sounds"
-export class Dice {
+import Sounds from "./sounds"
+class Dice {
     constructor(maxValue) {
         this.diceEl = document.querySelector(".dice")
         this.diceBtn = document.querySelector(".dice-btn")
@@ -35,3 +34,4 @@ export class Dice {
     }
 }
 
+export default Dice

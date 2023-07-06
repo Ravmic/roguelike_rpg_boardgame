@@ -1,4 +1,4 @@
-export class Players {
+class Players {
     constructor(players = 1, lives = 5) {
         this.playersArray = []
         this.players = players
@@ -88,3 +88,5 @@ export class Players {
     }
 }
 
+
+export default Players

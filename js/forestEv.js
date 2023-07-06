@@ -1,4 +1,4 @@
-export class Forest {
+class Forest {
     constructor(luck) {
 
         this.luck = luck
@@ -39,3 +39,5 @@ export class Forest {
 
     }
 }
+
+export default Forest 

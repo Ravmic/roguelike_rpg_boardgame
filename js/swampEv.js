@@ -1,4 +1,4 @@
-export class Swamp {
+class Swamp {
     constructor(luck) {
 
         this.luck = luck
@@ -39,3 +39,5 @@ export class Swamp {
 
     }
 }
+
+export default Swamp
